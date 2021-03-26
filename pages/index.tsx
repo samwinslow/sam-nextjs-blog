@@ -6,15 +6,17 @@ import Link from 'next/link'
 import Date from '../components/date'
 import { GetStaticProps } from 'next'
 
-export default ({
-  allPostsData
-}: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-  }[]
-}) => (
+const Index = (
+  {
+    allPostsData
+  }: {
+    allPostsData: {
+      date: string
+      title: string
+      id: string
+    }[]
+  }
+) => (
   <Layout home>
     <Head>
       <title>{siteTitle}</title>
@@ -44,6 +46,8 @@ export default ({
     </section>
   </Layout>
 )
+
+export default Index
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
