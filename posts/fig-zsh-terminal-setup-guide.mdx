@@ -1,0 +1,43 @@
+---
+slug: "blog/fig-zsh-terminal-setup-guide"
+date: "2021-02-13"
+title: "The 3 Best Things I've Done For My Terminal Experience"
+category: "blog"
+copy: "Fig, zsh, and Dark+: A Simple and Productive Terminal Setup on OSX"
+image: fig-zsh-dark-terminal-colors.png
+---
+
+import { TweetContainer } from "../components/TweetContainer";
+
+_Fig, zsh, and Dark+: A Simple and Productive Terminal Setup on OSX_
+
+I recently got some unexpected love on Twitter for a simple GIF illustrating my day-to-day terminal setup on OSX:
+
+<Tweet id="1360037417344983040" />
+
+Some of you were curious to learn more about the exact setup, so I'll describe it here! It's a few more than 3 tweaks, but who's counting?
+
+- **OSX built-in Terminal application**. I know many people swear by [iTerm](https://iterm2.com/), and luckily the rest of this setup will also support that. Personally, I've found that Apple's terminal does everything I need.
+  - What's even better than iTerm's split windows feature? Split windows everywhere, managed by keyboard shortcuts. Check out the [Spectacle](https://www.spectacleapp.com/) window manager (Still works, but deprecated—the maintainers recommend [Rectangle](https://rectangleapp.com/).)
+- **Fig autocomplete**. [Fig](https://withfig.com/) is a YC-backed company that makes a context layer for the Terminal that adds autocomplete, apps, and shortcuts as desired.
+  - Autocomplete specifications have to be manually defined, although the most common commands you might need, like `git`, `npm`, and `docker`, to name a few, come with the app. You can define your own specs in [this open-source repository](https://github.com/withfig/autocomplete). I contributed a spec for Yarn!
+- **zsh** with **oh-my-zsh**. [oh-my-zsh](https://ohmyz.sh/) adds a pretty prompt and more semantic coloring overall. Like Fig, it also has a strong community and tons of extensions.
+  - See a list of themes [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)—I'm using [agnoster](https://github.com/agnoster/agnoster-zsh-theme) which shows the working directory and Git branch by default. It's also very easily customizable.
+  - The other great feature of oh-my-zsh is the **git alias plugin**, which allows you to type _ga_ instead of `git add`, _gcmsg_ instead of `git commit -m` _grh_ instead of `git reset HEAD`, and so much more. Even though Fig's Git autocomplete support helps out somewhat, nothing beats a 2-letter command if you're going to use it a hundred times in a day.
+- **Dark+** color scheme to match what I use in VSCode. The oh-my-zsh themes are awesome, but since most of them use color by default, it can add a lot of visual noise to your terminal experience. I chose to make a custom OSX Terminal profile that uses the color values from the default dark scheme in VSCode which has nice muted pastels.
+  ![Dark+ color scheme in OSX Terminal](fig-zsh-dark-terminal-colors.png)
+  _You can download the profile [here](/Dark+.terminal). Note that you'll want to install the customized version of your preferred monospaced font if you're also going to use Agnoster. (Here, it's Hack Regular.)_
+- **Another note on colors**: it sounds trivial, but having a slightly transparent terminal window has a functional purpose, too, especially if you're on a laptop with limited screen space. For example, if I have my terminal open side-by-side with my text editor, and DevTools is behind it, I can see that there are some errors and warnings I should check out even before I tab over to it.
+  ![Errors visible behind the Terminal](fig-zsh-dark-terminal-errors.png)
+  _The red blocks on the left mean that maybe something I did in the terminal or my text editor screwed something up in the webapp. Instant feedback is better than even a tiny delay._
+
+Thanks for checking this out, and I hope it was helpful! [Tweet me](https://twitter.com/sambwinslow) a picture of your own setup, I'd love to see it.
+
+— Sam
+
+---
+
+Perhaps you'd also like to read about:
+
+- [How I built a social media app with React Native, the Spotify API, and a serverless backend on AWS Lambda](/code/tunestack)
+- [What my path into computer science looked like (it didn't involve a CS degree or bootcamps)](/code/no-degree)
