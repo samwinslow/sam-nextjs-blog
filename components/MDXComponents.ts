@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import Tweet from 'react-tweet-embed'
+import ColoredLink from './ColoredLink'
+import Image from './Image'
 
 const MDXComponents = {
-  a: Link,
-  Image,
+  a: ColoredLink,
+  img: Image,
   Tweet
 }
 

@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './layout.module.css'
+import styles from './Layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import ColorWrapper from './ColorWrapper'
+import ColoredLink from './ColoredLink'
 
-const name = '[Your Name]'
+const name = 'Samuel Winslow'
 export const siteTitle = 'Next.js Sample Website'
 
 const Layout = ({
@@ -42,7 +44,11 @@ const Layout = ({
               width={144}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+              <h1 className={utilStyles.heading2Xl}>
+                <ColoredLink href="/">
+                  {name}
+                </ColoredLink>
+              </h1>
           </>
         ) : (
           <>
@@ -59,9 +65,9 @@ const Layout = ({
               </a>
             </Link>
             <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
+              <ColoredLink href="/">
+                {name}
+              </ColoredLink>
             </h2>
           </>
         )}
@@ -69,9 +75,9 @@ const Layout = ({
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/">
+          <ColoredLink href="/">
             <a>← Back to home</a>
-          </Link>
+          </ColoredLink>
         </div>
       )}
     </div>
