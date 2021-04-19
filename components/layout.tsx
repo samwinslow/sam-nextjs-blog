@@ -3,7 +3,6 @@ import Image from 'next/image'
 import styles from './Layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
-import ColorWrapper from './ColorWrapper'
 import ColoredLink from './ColoredLink'
 
 const name = 'Samuel Winslow'
@@ -38,13 +37,13 @@ const Layout = ({
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src="/img/profile.jpg"
               className={utilStyles.borderCircle}
               height={144}
               width={144}
               alt={name}
             />
-              <h1 className={utilStyles.heading2Xl}>
+              <h1 className={utilStyles.heading2Xl} style={{ margin: '1rem' }}>
                 <ColoredLink href="/">
                   {name}
                 </ColoredLink>
@@ -56,7 +55,7 @@ const Layout = ({
               <a>
                 <Image
                   priority
-                  src="/images/profile.jpg"
+                  src="/img/profile.jpg"
                   className={utilStyles.borderCircle}
                   height={108}
                   width={108}
@@ -64,7 +63,7 @@ const Layout = ({
                 />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg}>
+            <h2 className={utilStyles.headingLg} style={{ margin: '1rem' }}>
               <ColoredLink href="/">
                 {name}
               </ColoredLink>

@@ -2,7 +2,7 @@
 
 :root {
   --base-font-family: calluna, Times, serif;
-  --head-font-family: degular-display, var(--base-font-family);
+  --head-font-family: degular-display, Arial, var(--base-font-family);
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
   --light: #ddd;
@@ -72,6 +72,13 @@ thead td, thead th {
 hr {
   border: none;
   border-bottom: 1px solid var(--light);
+}
+
+code {
+  font-size: 80%;
+  background: var(--light);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
 }
 
 .color-wrapper * {
