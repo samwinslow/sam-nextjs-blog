@@ -1,8 +1,6 @@
-@import url("https://use.typekit.net/aso7yux.css");
-
 :root {
-  --base-font-family: calluna, Times, serif;
-  --head-font-family: degular-display, Arial, var(--base-font-family);
+  --base-font-family: Times, serif;
+  --head-font-family: Arial, var(--base-font-family);
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
   --light: #ddd;
