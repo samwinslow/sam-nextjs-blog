@@ -5,6 +5,7 @@
   --head-font-family: degular-display, var(--base-font-family);
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
+  --light: #ddd;
   --link: hsl(160, 60%, 60%);
 }
 
@@ -18,7 +19,7 @@ body {
   margin: 0;
   font-family: var(--base-font-family);
   line-height: 1.618;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--text);
 }
 
@@ -65,7 +66,12 @@ td, th {
 }
 
 thead td, thead th {
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--text);
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid var(--light);
 }
 
 .color-wrapper * {
