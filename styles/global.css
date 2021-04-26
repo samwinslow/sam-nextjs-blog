@@ -1,6 +1,6 @@
 :root {
-  --base-font-family: Times, serif;
-  --head-font-family: Arial, var(--base-font-family);
+  --base-font-family: 'Bitter', Times, serif;
+  --head-font-family: 'Inter', Arial, var(--base-font-family);
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
   --light: #ddd;
@@ -17,19 +17,27 @@ body {
   margin: 0;
   font-family: var(--base-font-family);
   line-height: 1.618;
-  font-size: 20px;
+  font-size: 18px;
   color: var(--text);
+}
+
+section {
+  margin-top: 3rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--head-font-family);
 }
 
 h1, h2 {
   font-weight: 700;
-  font-family: var(--head-font-family);
   text-transform: uppercase;
+  letter-spacing: -0.04em;
 }
 
 h3 {
-  font-weight: 300;
-  font-family: var(--head-font-family);
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 p {

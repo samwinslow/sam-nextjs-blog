@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Date from '../components/Date'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
-import ColoredLink from '../components/ColoredLink'
+import socialLinks from '../lib/social-links.json'
 
 const Index = (
   {
@@ -37,25 +37,46 @@ const Index = (
         In my free time I love building hardware projects, reading, and cycling. I am always at the beginning of my journey to learn.
       </p>
     </section>
-    <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+    <section>
       <h2 className={utilStyles.headingLg}>Blog</h2>
       <ColorWrapper>
-      <ul className={utilStyles.list}>
-        {allPostsData.map(({ id, date, title }) => (
-          <li className={utilStyles.listItem} key={id}>
-            <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
-              <div style={{ minWidth: '6rem', opacity: 0.5 }}>
-                <Date dateString={date} />
-              </div>
-              <div>
-                <Link href={`/posts/${id}`}>
-                  {title}
-                </Link>
-              </div>
-            </h3>
-          </li>
-        ))}
-      </ul>
+        <ul className={utilStyles.list}>
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+              <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
+                <div style={{ minWidth: '6em', opacity: 0.5 }}>
+                  <Date dateString={date} />
+                </div>
+                <div>
+                  <Link href={`/posts/${id}`}>
+                    {title}
+                  </Link>
+                </div>
+              </h3>
+            </li>
+          ))}
+        </ul>
+      </ColorWrapper>
+    </section>
+    <section>
+      <h2 className={utilStyles.headingLg}>Find me elsewhere</h2>
+      <ColorWrapper>
+        <ul className={utilStyles.list}>
+          { socialLinks.map(({ site, url, introText }) => (
+            <li className={utilStyles.listItem} key={url}>
+              <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
+                <div style={{ minWidth: '6em', opacity: 0.5 }}>
+                  {introText}:
+                </div>
+                <div>
+                  <Link href={url}>
+                    {url.replace(/^https?:\/\//, '')}
+                  </Link>
+                </div>
+              </h3>
+            </li>
+          ))}
+        </ul>
       </ColorWrapper>
     </section>
   </Layout>
