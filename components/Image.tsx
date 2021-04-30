@@ -1,5 +1,4 @@
 import NextImage, { ImageProps } from 'next/image'
-import styles from './Image.module.css'
 
 const Image = ({ src, ...props }: ImageProps) => (
   <div style={{ margin: '0.618rem 0' }}>

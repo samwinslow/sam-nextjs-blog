@@ -7,6 +7,8 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import hydrate from 'next-mdx-remote/hydrate'
 import MDXComponents from '../../components/MDXComponents'
 import type { MdxRemote } from 'next-mdx-remote/types'
+import { useRouter } from 'next/dist/client/router'
+import { useEffect, useState } from 'react'
 
 const Post = ({
   postData
@@ -17,8 +19,21 @@ const Post = ({
     source: MdxRemote.Source
   }
 }) => {
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
   const content = hydrate(postData.source, { components: MDXComponents })
-  return (
+
+  useEffect(() => {
+    console.log('running')
+    if (router.isReady) {
+      console.log('isr', router.pathname)
+      setLoading(false)
+    }
+  }, [])
+
+  return loading ? (
+    <h1>Loading</h1>
+  ) : (
     <Layout>
       <Head>
         <title>{postData.title}</title>
