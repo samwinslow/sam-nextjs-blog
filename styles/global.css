@@ -3,6 +3,7 @@
   --head-font-family: Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
+  --muted: #bbb;
   --light: #ddd;
   --link: hsl(160, 60%, 60%);
 }
@@ -25,7 +26,7 @@ section {
   margin-top: 3rem;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--head-font-family);
 }
 
@@ -59,6 +60,16 @@ img {
 
 img.responsive {
   object-fit: cover;
+}
+
+.next-image-override > div > div:first-child {
+  display: none !important;
+}
+
+.next-image-override img {
+  position: static !important;
+  height: unset !important;
+  width: unset !important;
 }
 
 table {

@@ -72,13 +72,16 @@ const Layout = ({
         )}
       </header>
       <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
+      <footer style={{ marginTop: '3rem' }}>
+        {!home && (
           <ColoredLink href="/">
-            <a>← Back to home</a>
+            ← Back to home
           </ColoredLink>
-        </div>
-      )}
+        )}
+        <h5 style={{ textAlign: 'center', color: 'var(--muted)', fontWeight: 'normal' }}>
+          &copy; {new Date().getFullYear()} {name}
+        </h5>
+      </footer>
     </div>
   )
 }
