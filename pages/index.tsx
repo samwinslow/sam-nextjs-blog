@@ -7,6 +7,24 @@ import Date from '../components/Date'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
+import interestingThings from '../lib/interesting-things.json'
+
+interface NestedList {
+  name: string,
+  nodes?: NestedList[]
+}
+const formatTree = (nestedList: NestedList, depth = 0): string => {
+  if (!nestedList.nodes?.length) { // ├
+    return '    '.repeat(Math.max(depth, 0)) + ''
+      + nestedList.name + '\n'
+  }
+  return '    '.repeat(Math.max(depth, 0))
+    + nestedList.name
+    + '\n'
+    + nestedList.nodes.reduce((prev, node) =>
+        prev + formatTree(node, depth + 1), ''
+      )
+}
 
 const Index = (
   {
@@ -57,6 +75,12 @@ const Index = (
           ))}
         </ul>
       </ColorWrapper>
+    </section>
+    <section>
+      <h2 className={utilStyles.headingLg}>Things I consider interesting</h2>
+      <pre style={{ fontSize: '0.7rem' }}>
+        { formatTree(interestingThings) }
+      </pre>
     </section>
     <section>
       <h2 className={utilStyles.headingLg}>Find me elsewhere</h2>

@@ -1,0 +1,47 @@
+{
+  "name": "Everything",
+  "nodes": [
+    {
+      "name": "Mathematics",
+      "nodes": [
+        { "name": "Leibniz, GW" }
+      ]
+    },
+    {
+      "name": "Literature",
+      "nodes": [
+        { "name": "Borges, JL" }
+      ]
+    },
+    {
+      "name": "Art",
+      "nodes": [
+        { "name": "John Cage" },
+        { "name": "Escher, MC" }
+      ]
+    },
+    {
+      "name": "Psychology",
+      "nodes": [
+        {
+          "name": "Neuroscience",
+          "nodes": [
+            { "name": "Psilocybin" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cybernetics"
+    },
+    {
+      "name": "Bureaucracy, causes of and cures for"
+    },
+    {
+      "name": "L-theanine"
+    },
+    {
+      "name": "Brain-computer interfaces"
+    }
+  ]
+}
