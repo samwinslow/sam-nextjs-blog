@@ -1,6 +1,6 @@
 :root {
-  --base-font-family: 'Bitter', Times, serif;
-  --head-font-family: 'Inter', Arial, var(--base-font-family);
+  --base-font-family: Times, serif;
+  --head-font-family: Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
   --light: #ddd;
@@ -32,12 +32,11 @@ h1, h2, h3 {
 h1, h2 {
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 
 h3 {
   font-weight: 400;
-  letter-spacing: -0.02em;
 }
 
 p {

@@ -8,17 +8,15 @@ import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
 
-const Index = (
-  {
-    allPostsData
-  }: {
-    allPostsData: {
-      date: string
-      title: string
-      id: string
-    }[]
-  }
-) => (
+const Index = ({
+  allPostsData,
+}: {
+  allPostsData: {
+    date: string
+    title: string
+    id: string
+  }[]
+}) => (
   <Layout home>
     <Head>
       <title>{siteTitle}</title>
@@ -88,7 +86,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
   return {
     props: {
-      allPostsData
-    }
+      allPostsData,
+    },
   }
 }

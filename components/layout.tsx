@@ -5,12 +5,12 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import ColoredLink from './ColoredLink'
 
-const name = 'Samuel Winslow'
-export const siteTitle = 'Next.js Sample Website'
+const name = 'Sam Winslow'
+export const siteTitle = 'Sam Winslow'
 
 const Layout = ({
   children,
-  home
+  home,
 }: {
   children: React.ReactNode
   home?: boolean
