@@ -1,0 +1,44 @@
+---
+slug: "blog/tunestack"
+date: "2020-06-01"
+title: "Tunestack.fm"
+category: "blog"
+copy: "React Native & Node.js"
+image: "tunestack-tags.png"
+---
+
+In January 2020, I founded [Tunestack.fm](https://tunestack.fm), a social networking app for music lovers to share reviews of their favorite albums. We were later accepted into a startup accelerator at the [NYU Entrepreneur Lab](https://entrepreneur.nyu.edu/) and grew our community to 120 users.
+
+![](tunestack-3screens.jpg)
+
+I built and launched the beta version to TestFlight myself, and later onboarded 3 engineers. While the source code is private, here's a breakdown of the technology I used for the beta and initial launch:
+
+## Frontend
+- [Expo](https://expo.io/)
+- [React Native](https://reactnative.dev/)
+- [React Navigation](https://reactnavigation.org/) for managing application navigation
+- [Redux](https://redux.js.org/) for state management
+
+## Backend
+- [Serverless Framework](https://www.serverless.com/) for provisioning & deploying to AWS
+  - Used [serverless-plugin-split-stacks](https://github.com/dougmoscrop/serverless-plugin-split-stacks) and [serverless-domain-manager](https://github.com/amplify-education/serverless-domain-manager) to get around AWS' limits on the size of a REST API deployed with CloudFormation
+- [AWS Lambda](https://aws.amazon.com/lambda/) + Node.js
+- [Amazon Cognito](https://aws.amazon.com/cognito/) for user authz/authn.
+- [Amazon RDS](https://aws.amazon.com/rds/) (MySQL) + [Sequelize](https://sequelize.org/) + [Amazon S3](https://aws.amazon.com/s3/)
+- [Express.js](https://expressjs.com/) for some application microservices
+- Third-party APIs
+  - [Spotify](https://developer.spotify.com/documentation/web-api/)
+  - [SendGrid](https://sendgrid.com/docs/API_Reference/index.html)
+
+## Lessons Learned
+- Winslow's Rule: The Apple app review process takes twice as long as you think, no matter how long you think.
+- In terms of syntax and concepts, React Native is only marginally more complex than React, but you have to deal with asynchronous loading actions more explicitly. The browser layer usually abstracts away a lot of this.
+- Redux is useful, but very opinionated and requires a lot of boilerplate. On the plus side, it will force you into an MVC structure and make it easier to debug async code.
+- Serverless functions are great! Never dealing with the OS of a remote machine is awesome. However, there are a few drawbacks:
+  - `serverless-offline` does not perfectly replicate the remote environment. For instance, your Node runtime or ES5/6 syntax support might be different locally. Also, there is no great way to simulate the Cognito authorizer or other Amazon services, so it is often necessary to deploy to a remote dev stage.
+  - AWS limits an API Gateway to 200 CloudFormation resources, and each endpoint can generate somewhere between 5-8 resources. So, if you have more than 24-39 endpoints, you will have to either split them into separate stacks and use some DNS records to have them map to the same remote URL, or use fewer, monolithic functions and a package like `aws-serverless-express` to disaggregate them.
+  - Serverless helps you manage some, but not all, kinds of secret keys and resource permissions in AWS, and sometimes can even overwrite settings configured through the CLI or web interface.
+- Sequelize is a poorly maintained product and sometimes just acts as an obfuscation layer between your app and SQL database. It is also verbose and slow. Would not use it again, and would instead opt for GraphQL.
+- The Spotify API is a godsend, and genuinely a lot of fun to work with.
+
+![](tunestack-tags.png)
