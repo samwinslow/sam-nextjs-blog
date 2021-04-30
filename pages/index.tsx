@@ -5,21 +5,17 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/Date'
-import Image from '../components/Image'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
+import { PostMetadata } from '../lib/types'
+import concepts from '../lib/concepts.json'
 
-const Index = ({
-  allPostsData,
-}: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-    image?: string
-  }[]
-}) => (
+const Graph = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
+  null
+)
+
+const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
   <Layout home>
     <Head>
       <title>{siteTitle}</title>
@@ -37,6 +33,9 @@ const Index = ({
       <p>
         In my free time I love building hardware projects, reading, and cycling. I am always at the beginning of my journey to learn.
       </p>
+    </section>
+    <section>
+      <Graph allPostsData={allPostsData} />
     </section>
     <section>
       <h2 className={utilStyles.headingLg}>&#8258; Blog</h2>

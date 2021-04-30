@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import renderToString from 'next-mdx-remote/render-to-string'
 import MDXComponents from '../components/MDXComponents'
-import { PostData } from './types'
+import { PostData, PostMetadata } from './types'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -21,7 +21,7 @@ export const getSortedPostsData = () => {
     return {
       id,
       ...data
-    } as Exclude<PostData, 'source'>
+    } as PostMetadata
   })
   return allPostsData.sort((a, b) => a.date < b.date ? 1 : -1)
 }
