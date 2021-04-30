@@ -1,18 +1,21 @@
-import { DefaultNode, Graph } from '@visx/network'
+import { DefaultNode, Graph as NetworkGraph } from '@visx/network'
 import { PostMetadata } from '../lib/types'
 
 export type NetworkProps = {
   width: number
   height: number
-  concepts?: string[]
-  posts?: PostMetadata[]
+  concepts: string[]
+  posts: PostMetadata[]
 }
+
+type NodeType = 'concept' | 'post'
 
 interface CustomNode {
   x: number
   y: number
   id: string
-  type: 'concept' | 'post'
+  type: NodeType
+  postMetadata?: PostMetadata
 }
 
 interface CustomLink {
@@ -21,40 +24,59 @@ interface CustomLink {
   dashed?: boolean
 }
 
-const nodes: CustomNode[] = [
-  { x: 50, y: 20, id: '1', type: 'post' },
-  { x: 200, y: 250, id: '2', type: 'post' },
-  { x: 300, y: 40, id: '3', type: 'concept' },
-]
-
-const links: CustomLink[] = [
-  { source: nodes[0], target: nodes[1] },
-  { source: nodes[1], target: nodes[2] },
-  { source: nodes[2], target: nodes[0], dashed: true },
-]
-
-const graph = {
-  nodes,
-  links,
-}
-
 const graphColors = {
   post: 'hsl(200, 60%, 60%)',
-  concept: 'hsl(80, 60%, 60%)',
-  background: 'var(--light)',
+  concept: 'hsl(10, 80%, 60%)',
+  background: 'var(--background)',
 }
 
-export default function Example({
+const buildNode = (id: string, type: NodeType, postMetadata?: PostMetadata): CustomNode => {
+  const x = Math.floor(Math.random() * 800)
+  const y = Math.floor(Math.random() * 600)
+  return { x, y, id, type, postMetadata }
+}
+
+const buildLinks = (nodes: CustomNode[]): CustomLink[] => {
+  let links: CustomLink[] = []
+  // const conceptNodes = nodes.filter(({ type }) => type === 'concept')
+  const postNodes = nodes.filter(({ type }) => type === 'post')
+  const postNodeRecords = Object.fromEntries(
+    postNodes.map(node => [node.id, node])
+  )
+  postNodes.forEach(({ id, postMetadata: { children = [], parents = [] }}) => {
+    children.forEach(childId => links.push({
+      source: postNodeRecords[id],
+      target: postNodeRecords[childId],
+      dashed: true
+    }))
+    parents.forEach(parentId => links.push({
+      source: postNodeRecords[id],
+      target: postNodeRecords[parentId],
+    }))
+  })
+  return links
+}
+
+const buildGraph = ({ concepts, posts }: { concepts: string[]; posts: PostMetadata[] }) => {
+  const nodes: CustomNode[] = [
+    ...concepts.map(concept => buildNode(concept, 'concept')),
+    ...posts.map(data => buildNode(data.id, 'post', data)),
+  ]
+  const links = buildLinks(nodes)
+  return { nodes, links }
+}
+
+export default function Graph({
   width,
   height,
   concepts,
   posts
 }: NetworkProps) {
-  return width < 10 ? null : (
+  return (
     <svg width={width} height={height}>
       <rect width={width} height={height} rx={14} fill={graphColors.background} />
-      <Graph<CustomLink, CustomNode>
-        graph={graph}
+      <NetworkGraph<CustomLink, CustomNode>
+        graph={buildGraph({ concepts, posts })}
         top={20}
         left={20}
         nodeComponent={({ node }) =>
