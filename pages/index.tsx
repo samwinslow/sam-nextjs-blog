@@ -1,9 +1,11 @@
 import Head from 'next/head'
+import ReactTooltip from 'react-tooltip'
 import Layout, { siteTitle } from '../components/Layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/Date'
+import Image from '../components/Image'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
@@ -15,6 +17,7 @@ const Index = ({
     date: string
     title: string
     id: string
+    image?: string
   }[]
 }) => (
   <Layout home>
@@ -36,10 +39,10 @@ const Index = ({
       </p>
     </section>
     <section>
-      <h2 className={utilStyles.headingLg}>Blog</h2>
+      <h2 className={utilStyles.headingLg}>&#8258; Blog</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, title, image }) => (
             <li className={utilStyles.listItem} key={id}>
               <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
                 <div style={{ minWidth: '6em', opacity: 0.5 }}>
@@ -47,8 +50,25 @@ const Index = ({
                 </div>
                 <div>
                   <Link href={`/posts/${id}`}>
-                    {title}
+                    <a data-tip data-for={`tooltip-${id}`}>
+                      {title}
+                    </a>
                   </Link>
+                  <ReactTooltip
+                    id={`tooltip-${id}`}
+                    place="bottom"
+                    type="light"
+                    effect="float"
+                  >
+                    {
+                      image && (
+                        <img
+                          src={`img/${image}`}
+                          style={{ width: '12rem' }}
+                        />
+                      )
+                    }
+                  </ReactTooltip>
                 </div>
               </h3>
             </li>
@@ -57,7 +77,7 @@ const Index = ({
       </ColorWrapper>
     </section>
     <section>
-      <h2 className={utilStyles.headingLg}>Find me elsewhere</h2>
+      <h2 className={utilStyles.headingLg}>Find me elsewhere ⁜</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
           { socialLinks.map(({ site, url, introText }) => (
