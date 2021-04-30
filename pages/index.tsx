@@ -9,6 +9,7 @@ import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
 import { PostMetadata } from '../lib/types'
+import Example from '../components/Graph'
 import concepts from '../lib/concepts.json'
 
 const Graph = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
@@ -36,6 +37,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
     </section>
     <section>
       <Graph allPostsData={allPostsData} />
+      <Example width={800} height={600} />
     </section>
     <section>
       <h2 className={utilStyles.headingLg}>&#8258; Blog</h2>
