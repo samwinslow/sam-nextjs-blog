@@ -6,29 +6,71 @@ import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import hydrate from 'next-mdx-remote/hydrate'
 import MDXComponents from '../../components/MDXComponents'
-import type { MdxRemote } from 'next-mdx-remote/types'
+import { PostData } from '../../lib/types'
+import Link from 'next/link'
+import pluralize from 'pluralize'
+
+const TreeNavigation = ({ postIds, relation }: { postIds: string[], relation: string }) => (
+  <div className={`tree-nav ${relation}`}>
+    {pluralize(relation, postIds.length) + ': '}
+    { postIds.map(id => (
+      <code className="tree-nav-item">
+        <Link
+          key={id}
+          href={`/posts/${id}`}
+        >
+          {id}
+        </Link>
+      </code>
+    ))}
+  </div>
+)
+
+const RelatedNodes = ({ parents, children }: Pick<PostData, 'parents' | 'children'>) =>
+  (parents?.length || children?.length) && (
+    <div className="tree-nav-box">
+      <h5>Related Nodes</h5>
+      { parents?.length && (
+        <TreeNavigation
+          postIds={parents}
+          relation="Parent"
+        />
+      )}
+      { children?.length && (
+        <TreeNavigation
+          postIds={children}
+          relation="Child"
+        />
+      )}
+    </div>
+  )
 
 const Post = ({
-  postData
-}: {
   postData: {
-    title: string
-    date: string
-    source: MdxRemote.Source
+    date,
+    title,
+    parents,
+    children,
+    source
   }
+}: {
+  postData: PostData
 }) => {
-  const content = hydrate(postData.source, { components: MDXComponents })
+  const content = hydrate(source, { components: MDXComponents })
+  const hasRelatedNodes = parents?.length || children?.length
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>{title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+        <h1 className={utilStyles.headingXl}>{title}</h1>
+        { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
+        <div>
+          <Date dateString={date} />
         </div>
         <div className="mdx-wrapper">{content}</div>
+        { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
       </article>
     </Layout>
   )

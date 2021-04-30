@@ -5,6 +5,7 @@
   --text: #444;
   --muted: #bbb;
   --light: #ddd;
+  --background: #fff;
   --link: hsl(160, 60%, 60%);
 }
 
@@ -109,4 +110,35 @@ code {
 
 .color-wrapper * {
   color: inherit;
+}
+
+.tree-nav-box {
+  padding-bottom: 1em;
+}
+
+.tree-nav-item {
+  background: var(--background);
+  border: 1px solid var(--light);
+  display: inline-block;
+  margin-right: 0.3em;
+  padding: 0 0.3em;
+}
+
+.tree-nav-box h5 {
+  margin: 0.618rem 0 0 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.tree-nav-box .tree-nav.Parent::before {
+  content: '∈';
+  color: var(--muted);
+  padding-right: 0.618em;
+}
+
+.tree-nav-box .tree-nav.Child::before {
+  content: '⊂';
+  color: var(--muted);
+  padding-right: 0.618em;
 }

@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import renderToString from 'next-mdx-remote/render-to-string'
 import MDXComponents from '../components/MDXComponents'
+import { PostData } from './types'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -19,8 +20,8 @@ export const getSortedPostsData = () => {
     const { data } = matter(fileContents)
     return {
       id,
-      ...(data as { date: string; title: string })
-    }
+      ...data
+    } as Exclude<PostData, 'source'>
   })
   return allPostsData.sort((a, b) => a.date < b.date ? 1 : -1)
 }
@@ -46,6 +47,6 @@ export const getPostData = async (id: string) => {
   return {
     id,
     source,
-    ...(data as { date: string; title: string })
-  }
+    ...data
+  } as PostData
 }
