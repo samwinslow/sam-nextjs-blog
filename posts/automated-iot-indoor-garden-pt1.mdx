@@ -1,0 +1,105 @@
+---
+slug: "blog/automated-iot-indoor-garden-pt1"
+date: "2021-03-29"
+title: "Automated IoT Indoor Garden, pt. 1"
+category: "blog"
+copy: "Learning about hardware, embedded programming, and web security"
+image: 9EDDC814-15EE-4576-8B87-1BCCC16486FA_1_105_c.jpeg
+---
+
+Right around the New Year I decided it would be fun to get back into a little bit of hardware hacking. I've had this Arduino since middle school and made some miscellaneous projects with it, but haven't used it at all for the past seven or eight years. Some of the coolest projects I built back in the day were a bicycle speedometer, a touchscreen interface for a museum-gallery-like display, and a solid-state audio amplifier.
+
+When I started this project, it was because I missed the satisfaction of working with my hands while also working out the parts of my brain that I use to write software. Working with webapps, your modern tooling shows you exactly where the problems are and gives you advice on what to fix. This is wayyyy more hand-holding than writing C on the ATMega328p-powered Arduino, which has a 16MHz clock speed, 2KB RAM, and limited runtime debugging capabilities.
+
+When I'm not in front of my computer, I love the tactile experience of gardening, literally getting my hands dirty — but I can't stand the constant maintenance of watering every other day. Cue a project to automate this process.
+
+# 🌱
+
+**Parts list (read the article first, though!)**
+
+- [Arduino Uno R3](https://store.arduino.cc/usa/arduino-uno-rev3)
+- [Adafruit AirLift – ESP32 WiFi Co-Processor Breakout Board](https://www.adafruit.com/product/4201)
+- [AM2320 Digital Temperature and Humidity Sensor](https://www.adafruit.com/product/3721)
+- [Adafruit STEMMA Soil Sensor - I2C Capacitive Moisture Sensor](https://www.adafruit.com/product/4026)
+- [JST PH 4-Pin to Male Header Cable - I2C STEMMA Cable - 200mm](https://www.adafruit.com/product/3955)
+- [Mosthink LED Grow Light for Indoor Plants, 20W 5V](https://www.amazon.com/gp/product/B07QHYKZQF/)
+- 2x [5V One Channel Relay Module](https://www.amazon.com/gp/product/B00LW15A4W/)
+- [12V Car windshield-washer pump](https://www.amazon.com/gp/product/B000CB69ZW/)
+- [12V 10A DC Power Supply Adapter](https://www.amazon.com/gp/product/B07PWZQ33N/)
+- [10A10 Rectifier Diode](https://www.amazon.com/gp/product/B079KBP5CN/)
+- Solid 24 AWG wire for breadboard and connections to relays
+- 4-pin header cables
+
+## v0.0.1 - It's a box with lights.
+
+There is lots of furniture and miscellaneous junk on the streets of New York. Luckily, I found a mostly clean fish tank a block away from my apartment which became the base container. The lid is a laminated wood shelf. On the underside there are two LED strips which emit red and blue light at wavelengths amenable to plants.
+
+![108E1144-9D3B-458D-BA28-1D03BF05CF03_1_105_c.jpeg](108E1144-9D3B-458D-BA28-1D03BF05CF03_1_105_c.jpeg)
+
+The lights run off 5V USB power, but because their power requirement is about 2A, this should not be drawn from the Arduino board which has a recommended maximum of 40-50 mA off the GPIO pins. I chose a relay module with a current rating well above the LEDs' rating and with built-in flyback diode circuitry.
+
+### ELI5: Flyback diodes
+
+Because a relay coil, like a motor, is an **inductive load,** a spike of reverse current (or back EMF) will occur when the component is powered off. This can be much higher in amplitude than the steady-state load and damage upstream components.
+
+I remember sitting in on an electricity & magnetism class at MIT one year and witnessing an insane demonstration. The professor brought out a massive electric motor, closed the circuit with a [jack-knife switch](https://en.wikipedia.org/wiki/Knife_switch), and it began to spin up. When he opened the switch, a loud pop rang out in the classroom and a bluish bolt of electricity arced between the contacts. That's back EMF.
+
+![242737E5-23F9-4BBE-9C03-257CAC954122_1_105_c.jpeg](242737E5-23F9-4BBE-9C03-257CAC954122_1_105_c.jpeg)
+
+If you really wanted to, you could use a relay component on its own and also build the flyback circuit yourself. This would only be marginally cheaper, though, and certainly more time consuming.
+
+## v0.0.2 - Soil sensor and networking
+
+In order for this to really be an IoT project, we need some I/O. I wanted to capture soil moisture and temperature throughout the day and create an explorable graph of the data. By monitoring temperature, I could hopefully choose the optimal place in my apartment to grow plants.
+
+At this stage I also bought a 12V automotive windshield washer pump, in hopes to use it together with the moisture sensor as a fully self-regulating system. I attached a reverse-biased 10A10 diode across its terminals to protect the 12V power supply brick, and will control it with another 5V relay.
+
+The Adafruit ESP32 module supports many different protocols, and I recently learned [MQTT](https://en.wikipedia.org/wiki/MQTT) is the industry standard for this type of application. It has less overhead per packet than HTTP, and semantically, MQTT is data-oriented while HTTP is document-oriented.
+
+Adafruit has a great tool with [Adafruit.IO](http://adafruit.io), and I was able to publish MQTT data and view it in a dashboard in minutes. It was almost too easy. Let's make it harder for ourselves.
+
+![9EDDC814-15EE-4576-8B87-1BCCC16486FA_1_105_c.jpeg](9EDDC814-15EE-4576-8B87-1BCCC16486FA_1_105_c.jpeg)
+
+## v0.0.3 - AWS concerns & considerations
+
+Adafruit's service is geared toward beginners or people who don't otherwise like web programming, and I wanted to do something more custom. I have a ton of leftover AWS credits, so decided to use Amazon's MQTT service. That's exactly when I started running into problems.
+
+There is an [AWS IoT Device SDK for Embedded C](https://docs.aws.amazon.com/iot/latest/developerguide/iot-embedded-c-sdk.html) which has a small disk and RAM footprint. Not small enough to run on the Arduino, though. I could choose to run it on the ESP32 however, which actually has a faster processor than the Arduino and 4MB flash memory.
+
+I would then be doing a lot of arbitrary processing on the ESP32, though, and there would no longer be a clear separation of concerns. I didn't want to hard-code information like the MQTT hostname and "business logic" to the ESP32, because if I wanted to change or debug these values, it would be a huge pain to disassemble the circuit if/when I move off the breadboard.
+
+### Flashing the firmware
+
+After consulting the AWS docs and the [Adafruit WiFiNINA firmware](https://github.com/adafruit/nina-fw) that runs on the chip, it seemed like all I needed to do was flash my AWS certificates to the ESP32, and modify the firmware to also send the Server Name Identification ([RFC 6066](https://tools.ietf.org/html/rfc6066)) header on requests. MbedTLS, which NINA uses under the hood, [supports SNI](https://tls.mbed.org/kb/how-to/use-sni), but the Adafruit firmware does not expose this feature by default. It was only a few lines to enable it.
+
+I do not have a dedicated device to flash SPI-interface chips, so I used the Arduino as a passthrough using instructions very similar to [these](https://learn.adafruit.com/adafruit-airlift-breakout/upgrade-external-esp32-airlift-firmware). You will need to communicate with the ESP bootloader over SPI and its TX/RX pins. However, the Uno only has one hardware serial interface which is reserved for the USB connection, meaning we have to use a software serial interface to talk to the ESP.
+
+SoftwareSerial does not support simultaneous data flows, but I was able to use [AltSoftSerial](https://www.pjrc.com/teensy/td_libs_AltSoftSerial.html) on the Uno to burn the certificates, albeit at a slower baud rate than I would have liked.
+
+### Certificate woes
+
+At this point the cryptography talk went over my head and I am not sure I installed the right certs in the right order, because I was never able to get the AWS IoT connection established. The following illustrates the X509 certificate flow (from [this article](https://darutk.medium.com/illustrated-x-509-certificate-84aece2c5c2e)):
+
+![cert-flow.png](cert-flow.png)
+
+Wow. This is web security at a much lower level than I have ever worked with before. Additionally, the Adafruit NINA firmware treats all certificates as a single huge blob in memory, and I suspect that, not only does the order matter, but the firmware expects a certain cryptographic algorithm and memory address for each certificate, and these values seem to be hard-coded in at various points. I wasted days on this.
+
+## v0.1.0 - Revert changes and repent for my sins of overconfidence
+
+I never got the AWS client to connect properly, and even if I had, I didn't have any space left on the Arduino to hold a JSON library in order to structure the data the way AWS expects. I was so cramped for space on the Arduino that I couldn't send the full word `Temperature` in a packet without running out of memory.
+
+I thought, OK, might as well revert to what we know works — Adafruit IO. So I tried to factory reset: that is, burn the original firmware, with the Adafruit certs and my customizations removed.
+
+No dice. I would repeatedly see the message `Timed out waiting for packet header` while attempting to establish connection with the ESP32 from my computer via the passthrough. Stupidly, I reversed the TX and RX pins at some point, but this didn't seem to fry the chip; I could still connect to WiFi networks from it.
+
+This is the oscilloscope trace from the TX pin of the ESP32. Something doesn't appear to be right... it is supposed to send *something* on TX after it has received the reset/enter bootloader mode signal, but that's not happening here. From what I know, serial connections are supposed to be resting `HIGH`. All the other pins use 5V logic, but the resting voltage here is about 3V, with a momentary rise to 4.5V and very short dip to 0V.
+
+![BF9FAEF8-53B9-461B-8650-9B48CE7CE84E_1_105_c.jpeg](BF9FAEF8-53B9-461B-8650-9B48CE7CE84E_1_105_c.jpeg)
+
+If this is the "packet header" response, it's not getting read by the Uno serial.
+
+If you have any ideas here, do let me know — I'd love for the ESP32 to *not* be a waste of money. Until then, I just bought the [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) for about $10. Hopefully the integrated WiFi and comfortable amounts of RAM will make this project easier.
+
+![zero-w.png](zero-w.png)
+
+Part 2 of this article will include rebuilding this on top of the Pi.
