@@ -12,6 +12,8 @@ import { PostMetadata } from '../lib/types'
 import Graph from '../components/Graph'
 import concepts from '../lib/concepts.json'
 
+const showGraph = false
+
 const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
   <Layout home>
     <Head>
@@ -31,14 +33,16 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
         In my free time I love building hardware projects, reading, and cycling. I am always at the beginning of my journey to learn.
       </p>
     </section>
-    <section>
-      <Graph
-        width={800}
-        height={600}
-        concepts={concepts}
-        posts={allPostsData}
-      />
-    </section>
+    { showGraph && (
+      <section>
+        <Graph
+          width={800}
+          height={600}
+          concepts={concepts}
+          posts={allPostsData}
+        />
+      </section>
+    )}
     <section>
       <h2 className={utilStyles.headingLg}>&#8258; Blog</h2>
       <ColorWrapper>
