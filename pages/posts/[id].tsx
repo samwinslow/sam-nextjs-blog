@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
-import Date from '../../components/Date'
 import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import hydrate from 'next-mdx-remote/hydrate'

@@ -1,6 +1,6 @@
-import { PostMetadata } from "../lib/types";
-import Date from "./date";
-import { SlugItem } from "./SlugItem";
+import { PostMetadata } from '../lib/types'
+import Date from './Date'
+import { SlugItem } from './SlugItem'
 
 export const Byline = ({ date, tags, expanded = false }: { date: PostMetadata['date'], tags: PostMetadata['tags'], expanded: boolean }): JSX.Element => (
   <div style={expanded ? {} : { fontSize: '85%' }}>
