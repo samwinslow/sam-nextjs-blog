@@ -31,8 +31,8 @@
   }
 
 :root {
-  --base-font-family: "urw-din", Times, serif;
-  --head-font-family: "urw-din", Arial, sans-serif;
+  --base-font-family: "urw-din", Helvetica, Arial, sans-serif;
+  --head-font-family: "urw-din", Helvetica, Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
   --light: rgba(0,10,20,0.15);

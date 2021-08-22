@@ -7,13 +7,12 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import hydrate from 'next-mdx-remote/hydrate'
 import MDXComponents from '../../components/MDXComponents'
 import type { MdxRemote } from 'next-mdx-remote/types'
+import { PostMetadata } from '../../lib/types'
 
 const Post = ({
   postData
 }: {
-  postData: {
-    title: string
-    date: string
+  postData: PostMetadata & {
     source: MdxRemote.Source
   }
 }) => {
@@ -26,6 +25,11 @@ const Post = ({
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
+          { postData.tags && <>
+            {' ['}
+            {postData.tags.join(', ')}
+            {'] '}
+          </>}
           <Date dateString={postData.date} />
         </div>
         <div className="mdx-wrapper">{content}</div>
