@@ -64,7 +64,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
                 id={`tooltip-${id}`}
                 place="left"
                 type="light"
-                effect="float"
+                effect="solid"
               >
                 {
                   image && (
