@@ -27,10 +27,10 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
         My name is Sam. I am currently a full-stack engineer at PostHog. Before that, I founded Tunestack, a music-based social network.
       </p>
       <p>
-        My earliest experiences with code were building games on a TI-83 calculator and teaching myself BASIC at a young age. I later studied the interaction of technology &amp; society at NYU, and have also worked as a designer and marketer.
+        I studied the interaction of technology &amp; society at NYU, and have also worked as a designer and marketer.
       </p>
       <p>
-        In my free time I love building hardware projects, reading, and cycling. I am always at the beginning of my journey to learn.
+        In my free time I love working with electronics, reading, and cycling. I am always at the beginning of my journey to learn.
       </p>
     </section>
     { showGraph && (
