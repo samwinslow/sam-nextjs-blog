@@ -1,12 +1,45 @@
+@font-face {
+  font-family:"urw-din";
+  src:url("https://use.typekit.net/af/c3b3a1/00000000000000007735a834/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/c3b3a1/00000000000000007735a834/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/c3b3a1/00000000000000007735a834/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:300;
+  }
+  
+  @font-face {
+  font-family:"urw-din";
+  src:url("https://use.typekit.net/af/f1d51b/00000000000000007735a83d/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/f1d51b/00000000000000007735a83d/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/f1d51b/00000000000000007735a83d/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:400;
+  }
+  
+  @font-face {
+  font-family:"urw-din";
+  src:url("https://use.typekit.net/af/d96df7/00000000000000007735a843/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/d96df7/00000000000000007735a843/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/d96df7/00000000000000007735a843/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:500;
+  }
+  
+  @font-face {
+  font-family:"urw-din";
+  src:url("https://use.typekit.net/af/cd97e9/00000000000000007735a84f/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/cd97e9/00000000000000007735a84f/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/cd97e9/00000000000000007735a84f/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:700;
+  }
+
 :root {
-  --base-font-family: Times, serif;
-  --head-font-family: Arial, sans-serif;
+  --base-font-family: "urw-din", Helvetica, Arial, sans-serif;
+  --head-font-family: "urw-din", Helvetica, Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
   --muted: #bbb;
-  --light: #ddd;
-  --background: #fff;
+  --tree-nav-background: transparent;
+  --light: rgba(0,10,20,0.15);
   --link: hsl(160, 60%, 60%);
+  --bg-light: rgba(0,10,20,0.05);
 }
 
 * {
@@ -50,8 +83,26 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover, a:hover * {
   text-decoration: underline;
+  opacity: 0.8;
+}
+
+.list-link-content h3 {
+  font-weight: 500;
+}
+
+.list-link-content {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.5em;
+  margin: 0.25rem -0.5em;
+  transition: all 0.2s ease;
+}
+
+.list-link-content:hover {
+  background-color: var(--bg-light);
+  border-radius: 0.5em;
 }
 
 img {
@@ -77,6 +128,10 @@ div[data-id="tooltip"] {
   background: transparent;
   padding: 0;
   margin: 0;
+}
+
+div[data-id="tooltip"] img {
+  opacity: 0.75;
 }
 
 div[data-id="tooltip"]::before, div[data-id="tooltip"]::after {
@@ -110,14 +165,15 @@ code {
 
 .color-wrapper * {
   color: inherit;
+  transition: opacity 0.2s ease;
 }
 
 .tree-nav-box {
   padding-bottom: 1em;
 }
 
-.tree-nav-item {
-  background: var(--background);
+.slug-item {
+  background: var(--tree-nav-background);
   border: 1px solid var(--light);
   display: inline-block;
   margin-right: 0.3em;
@@ -129,16 +185,4 @@ code {
   text-transform: uppercase;
   font-weight: 400;
   color: var(--muted);
-}
-
-.tree-nav-box .tree-nav.Parent::before {
-  content: '∈';
-  color: var(--muted);
-  padding-right: 0.618em;
-}
-
-.tree-nav-box .tree-nav.Child::before {
-  content: '⊂';
-  color: var(--muted);
-  padding-right: 0.618em;
 }

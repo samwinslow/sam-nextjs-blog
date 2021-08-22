@@ -27,7 +27,7 @@ interface CustomLink {
 const graphColors = {
   post: 'hsl(200, 60%, 60%)',
   concept: 'hsl(10, 80%, 60%)',
-  background: 'var(--background)',
+  background: 'var(--tree-nav-background)',
 }
 
 const buildNode = (id: string, type: NodeType, postMetadata?: PostMetadata): CustomNode => {

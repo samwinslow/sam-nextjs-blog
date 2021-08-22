@@ -14,7 +14,7 @@ const TreeNavigation = ({ postIds, relation }: { postIds: string[], relation: st
   <div className={`tree-nav ${relation}`}>
     {pluralize(relation, postIds.length) + ': '}
     { postIds.map(id => (
-      <code className="tree-nav-item">
+      <code className="slug-item">
         <Link
           key={id}
           href={`/posts/${id}`}
@@ -29,7 +29,6 @@ const TreeNavigation = ({ postIds, relation }: { postIds: string[], relation: st
 const RelatedNodes = ({ parents, children }: Pick<PostData, 'parents' | 'children'>) =>
   (parents?.length || children?.length) && (
     <div className="tree-nav-box">
-      <h5>Related Nodes</h5>
       { parents?.length && (
         <TreeNavigation
           postIds={parents}
@@ -51,7 +50,8 @@ const Post = ({
     title,
     parents,
     children,
-    source
+    tags,
+    source,
   }
 }: {
   postData: PostData
@@ -68,6 +68,11 @@ const Post = ({
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
         <div>
           <Date dateString={date} />
+          { tags && <>
+            {' ['}
+            {tags.join(', ')}
+            {'] '}
+          </>}
         </div>
         <div className="mdx-wrapper">{content}</div>
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }

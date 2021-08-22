@@ -8,6 +8,7 @@ export type PostData = {
   image: string
   parents?: string[]
   children?: string[]
+  tags?: string[]
   source: MdxRemote.Source
 }
 

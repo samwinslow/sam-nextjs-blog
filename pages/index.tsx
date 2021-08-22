@@ -44,45 +44,51 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
       </section>
     )}
     <section>
-      <h2 className={utilStyles.headingLg}>&#8258; Blog</h2>
+      <h2 className={utilStyles.headingLg}>Blog</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title, image }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
-                <div style={{ minWidth: '6em', opacity: 0.5 }}>
-                  <Date dateString={date} />
+          {allPostsData.map(({ id, date, title, image, copy, tags }) => (
+            <li key={id}>
+              <Link href={`/posts/${id}`}>
+                <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
+                  <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                    {title}
+                  </h3>
+                  <div style={{ fontSize: '85%' }}>
+                    { tags && <>
+                      {' ['}
+                      {tags.join(', ')}
+                      {'] '}
+                    </>}
+                    <Date dateString={date} />
+                  </div>
+                  <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                    {copy}
+                  </div>
                 </div>
-                <div>
-                  <Link href={`/posts/${id}`}>
-                    <a data-tip data-for={`tooltip-${id}`}>
-                      {title}
-                    </a>
-                  </Link>
-                  <ReactTooltip
-                    id={`tooltip-${id}`}
-                    place="bottom"
-                    type="light"
-                    effect="float"
-                  >
-                    {
-                      image && (
-                        <img
-                          src={`img/${image}`}
-                          style={{ width: '12rem' }}
-                        />
-                      )
-                    }
-                  </ReactTooltip>
-                </div>
-              </h3>
+              </Link>
+              <ReactTooltip
+                id={`tooltip-${id}`}
+                place="left"
+                type="light"
+                effect="float"
+              >
+                {
+                  image && (
+                    <img
+                      src={`img/${image}`}
+                      style={{ width: '12rem' }}
+                    />
+                  )
+                }
+              </ReactTooltip>
             </li>
           ))}
         </ul>
       </ColorWrapper>
     </section>
     <section>
-      <h2 className={utilStyles.headingLg}>Find me elsewhere ⁜</h2>
+      <h2 className={utilStyles.headingLg}>Find me elsewhere</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
           { socialLinks.map(({ site, url, introText }) => (

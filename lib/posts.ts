@@ -18,10 +18,12 @@ export const getSortedPostsData = () => {
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data } = matter(fileContents)
+    const postMetadata = data as PostMetadata
     return {
       id,
-      ...data
-    } as PostMetadata
+      ...postMetadata,
+      tags: postMetadata?.tags?.sort() || null,
+    }
   })
   return allPostsData.sort((a, b) => a.date < b.date ? 1 : -1)
 }
