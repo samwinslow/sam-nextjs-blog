@@ -35,6 +35,8 @@
   --head-font-family: "urw-din", Helvetica, Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
+  --muted: #bbb;
+  --tree-nav-background: transparent;
   --light: rgba(0,10,20,0.15);
   --link: hsl(160, 60%, 60%);
   --bg-light: rgba(0,10,20,0.05);
@@ -58,7 +60,7 @@ section {
   margin-top: 3rem;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--head-font-family);
 }
 
@@ -112,6 +114,30 @@ img.responsive {
   object-fit: cover;
 }
 
+.next-image-override > div > div:first-child {
+  display: none !important;
+}
+
+.next-image-override img {
+  position: static !important;
+  height: unset !important;
+  width: unset !important;
+}
+
+div[data-id="tooltip"] {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+div[data-id="tooltip"] img {
+  opacity: 0.75;
+}
+
+div[data-id="tooltip"]::before, div[data-id="tooltip"]::after {
+  display: none;
+}
+
 table {
   font-size: 0.7rem;
 }
@@ -140,4 +166,23 @@ code {
 .color-wrapper * {
   color: inherit;
   transition: opacity 0.2s ease;
+}
+
+.tree-nav-box {
+  padding-bottom: 1em;
+}
+
+.slug-item {
+  background: var(--tree-nav-background);
+  border: 1px solid var(--light);
+  display: inline-block;
+  margin-right: 0.3em;
+  padding: 0 0.3em;
+}
+
+.tree-nav-box h5 {
+  margin: 0.618rem 0 0 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--muted);
 }

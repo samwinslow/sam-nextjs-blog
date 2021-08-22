@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import ReactTooltip from 'react-tooltip'
 import Layout, { siteTitle } from '../components/Layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
@@ -8,12 +9,12 @@ import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
 import { PostMetadata } from '../lib/types'
+import Graph from '../components/Graph'
+import concepts from '../lib/concepts.json'
 
-const Index = ({
-  allPostsData,
-}: {
-  allPostsData: PostMetadata[]
-}) => (
+const showGraph = false
+
+const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
   <Layout home>
     <Head>
       <title>{siteTitle}</title>
@@ -32,14 +33,24 @@ const Index = ({
         In my free time I love working with electronics, reading, and cycling. I am always at the beginning of my journey to learn.
       </p>
     </section>
+    { showGraph && (
+      <section>
+        <Graph
+          width={800}
+          height={600}
+          concepts={concepts}
+          posts={allPostsData}
+        />
+      </section>
+    )}
     <section>
       <h2 className={utilStyles.headingLg}>Blog</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title, copy, tags }) => (
+          {allPostsData.map(({ id, date, title, image, copy, tags }) => (
             <li key={id}>
               <Link href={`/posts/${id}`}>
-                <div className="list-link-content">
+                <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
                   <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
                   </h3>
@@ -56,6 +67,21 @@ const Index = ({
                   </div>
                 </div>
               </Link>
+              <ReactTooltip
+                id={`tooltip-${id}`}
+                place="left"
+                type="light"
+                effect="float"
+              >
+                {
+                  image && (
+                    <img
+                      src={`img/${image}`}
+                      style={{ width: '12rem' }}
+                    />
+                  )
+                }
+              </ReactTooltip>
             </li>
           ))}
         </ul>

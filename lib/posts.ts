@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import renderToString from 'next-mdx-remote/render-to-string'
 import MDXComponents from '../components/MDXComponents'
-import { PostMetadata } from './types'
+import { PostData, PostMetadata } from './types'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -49,6 +49,6 @@ export const getPostData = async (id: string) => {
   return {
     id,
     source,
-    ...(data as { date: string; title: string })
-  }
+    ...data
+  } as PostData
 }
