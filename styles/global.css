@@ -3,8 +3,9 @@
   --head-font-family: Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #444;
-  --light: #ddd;
+  --light: rgba(0,10,20,0.15);
   --link: hsl(160, 60%, 60%);
+  --bg-light: rgba(0,10,20,0.05);
 }
 
 * {
@@ -48,8 +49,22 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover, a:hover * {
   text-decoration: underline;
+  opacity: 0.8;
+}
+
+.list-link-content {
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.5em;
+  margin: 0 -0.5em;
+  transition: all 0.2s ease;
+}
+
+.list-link-content:hover {
+  background-color: var(--bg-light);
+  border-radius: 0.5em;
 }
 
 img {
@@ -88,4 +103,5 @@ code {
 
 .color-wrapper * {
   color: inherit;
+  transition: opacity 0.2s ease;
 }

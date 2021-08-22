@@ -40,17 +40,17 @@ const Index = ({
       <ColorWrapper>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
-                <div style={{ minWidth: '6em', opacity: 0.5 }}>
-                  <Date dateString={date} />
-                </div>
-                <div>
-                  <Link href={`/posts/${id}`}>
+            <li key={id}>
+              <Link href={`/posts/${id}`}>
+                <div className="list-link-content">
+                  <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
-                  </Link>
+                  </h3>
+                  <div style={{ opacity: 0.6, display: 'inline-block' }}>
+                    <Date dateString={date} />
+                  </div>
                 </div>
-              </h3>
+              </Link>
             </li>
           ))}
         </ul>

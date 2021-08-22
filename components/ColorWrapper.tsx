@@ -21,7 +21,7 @@ const ColorWrapper = ({
   return (
     <span
       style={{
-        color: `hsl(${hue}, 60%, 60%)`,
+        color: `hsl(${hue}, 80%, 40%)`,
         transition: 'color 3s linear',
       }}
       className="color-wrapper"
