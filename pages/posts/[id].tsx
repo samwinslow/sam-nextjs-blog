@@ -9,19 +9,14 @@ import MDXComponents from '../../components/MDXComponents'
 import { PostData } from '../../lib/types'
 import Link from 'next/link'
 import pluralize from 'pluralize'
+import { SlugItem } from '../../components/SlugItem'
+import { Byline } from '../../components/Byline'
 
 const TreeNavigation = ({ postIds, relation }: { postIds: string[], relation: string }) => (
   <div className={`tree-nav ${relation}`}>
     {pluralize(relation, postIds.length) + ': '}
     { postIds.map(id => (
-      <code className="slug-item">
-        <Link
-          key={id}
-          href={`/posts/${id}`}
-        >
-          {id}
-        </Link>
-      </code>
+      <SlugItem href={`/posts/${id}`} text={id} />
     ))}
   </div>
 )
@@ -52,6 +47,7 @@ const Post = ({
     children,
     tags,
     source,
+    image,
   }
 }: {
   postData: PostData
@@ -65,15 +61,8 @@ const Post = ({
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{title}</h1>
+        <Byline date={date} tags={tags} expanded />
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
-        <div>
-          <Date dateString={date} />
-          { tags && <>
-            {' ['}
-            {tags.join(', ')}
-            {'] '}
-          </>}
-        </div>
         <div className="mdx-wrapper">{content}</div>
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
       </article>

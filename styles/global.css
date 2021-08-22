@@ -132,6 +132,7 @@ div[data-id="tooltip"] {
 
 div[data-id="tooltip"] img {
   opacity: 0.75;
+  border-radius: 0.5em;
 }
 
 div[data-id="tooltip"]::before, div[data-id="tooltip"]::after {

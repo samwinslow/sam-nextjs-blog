@@ -4,13 +4,13 @@ import Layout, { siteTitle } from '../components/Layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
-import Date from '../components/Date'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
 import { PostMetadata } from '../lib/types'
 import Graph from '../components/Graph'
 import concepts from '../lib/concepts.json'
+import { Byline } from '../components/Byline'
 
 const showGraph = false
 
@@ -54,14 +54,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
                   <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
                   </h3>
-                  <div style={{ fontSize: '85%' }}>
-                    { tags && <>
-                      {' ['}
-                      {tags.join(', ')}
-                      {'] '}
-                    </>}
-                    <Date dateString={date} />
-                  </div>
+                  <Byline date={date} tags={tags} />
                   <div style={{ opacity: 0.5, color: 'var(--text)' }}>
                     {copy}
                   </div>
@@ -76,7 +69,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
                 {
                   image && (
                     <img
-                      src={`img/${image}`}
+                      src={`/img/${image}`}
                       style={{ width: '12rem' }}
                     />
                   )
