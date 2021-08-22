@@ -15,6 +15,7 @@ const Index = ({
     date: string
     title: string
     id: string
+    copy: string
   }[]
 }) => (
   <Layout home>
@@ -39,15 +40,18 @@ const Index = ({
       <h2 className={utilStyles.headingLg}>Blog</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, title, copy }) => (
             <li key={id}>
               <Link href={`/posts/${id}`}>
                 <div className="list-link-content">
                   <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
                   </h3>
-                  <div style={{ opacity: 0.6, display: 'inline-block' }}>
+                  <div style={{ fontSize: '85%', display: 'inline-block' }}>
                     <Date dateString={date} />
+                  </div>
+                  <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                    {copy}
                   </div>
                 </div>
               </Link>
