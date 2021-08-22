@@ -7,15 +7,12 @@ import Date from '../components/Date'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
+import { PostMetadata } from '../lib/types'
 
 const Index = ({
   allPostsData,
 }: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-  }[]
+  allPostsData: PostMetadata[]
 }) => (
   <Layout home>
     <Head>
@@ -39,18 +36,26 @@ const Index = ({
       <h2 className={utilStyles.headingLg}>Blog</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
-                <div style={{ minWidth: '6em', opacity: 0.5 }}>
-                  <Date dateString={date} />
-                </div>
-                <div>
-                  <Link href={`/posts/${id}`}>
+          {allPostsData.map(({ id, date, title, copy, tags }) => (
+            <li key={id}>
+              <Link href={`/posts/${id}`}>
+                <div className="list-link-content">
+                  <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
-                  </Link>
+                  </h3>
+                  <div style={{ fontSize: '85%' }}>
+                    { tags && <>
+                      {' ['}
+                      {tags.join(', ')}
+                      {'] '}
+                    </>}
+                    <Date dateString={date} />
+                  </div>
+                  <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                    {copy}
+                  </div>
                 </div>
-              </h3>
+              </Link>
             </li>
           ))}
         </ul>

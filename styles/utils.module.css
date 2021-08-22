@@ -19,7 +19,7 @@
 .headingMd {
   font-size: 1.2rem;
   line-height: 1.2;
-  margin: 0 0 0.7rem 0;
+  margin: 0 0 0.25rem 0;
 }
 
 .borderCircle {
@@ -38,10 +38,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.listItem {
-  margin: 0 0 1.25rem;
 }
 
 .lightText {
