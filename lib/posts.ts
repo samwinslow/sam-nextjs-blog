@@ -47,7 +47,9 @@ export const getSortedPostsData = () => {
 const sortedPosts = getSortedPostsData()
 
 export const getAllPostIds = () => {
-  const fileNames = fs.readdirSync(postsDirectory)
+  const fileNames = fs
+    .readdirSync(postsDirectory)
+    .filter(name => mdxExtension.test(name))
   return fileNames.map(fileName => {
     return {
       params: {
