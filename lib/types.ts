@@ -10,6 +10,8 @@ export type PostData = {
   children?: string[]
   tags?: string[]
   source: MdxRemote.Source
+  previous: string | null
+  next: string | null
 }
 
 export type PostMetadata = Exclude<PostData, 'source'>

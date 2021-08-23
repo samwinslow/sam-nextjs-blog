@@ -38,7 +38,7 @@
   --muted: #bbb;
   --tree-nav-background: transparent;
   --light: rgba(0,10,20,0.15);
-  --link: hsl(160, 60%, 60%);
+  --link: hsl(160, 80%, 40%);
   --bg-light: rgba(0,10,20,0.05);
 }
 
@@ -81,6 +81,7 @@ p {
 a {
   color: var(--link);
   text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
 a:hover, a:hover * {
@@ -131,7 +132,6 @@ div[data-id="tooltip"] {
 }
 
 div[data-id="tooltip"] img {
-  opacity: 0.75;
   border-radius: 0.5em;
 }
 

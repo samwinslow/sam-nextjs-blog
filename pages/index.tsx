@@ -21,9 +21,6 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
     </Head>
     <section className={utilStyles.headingMd}>
       <p>
-        Hello. I’m glad you’re here.
-      </p>
-      <p>
         My name is Sam. I am currently a full-stack engineer at PostHog. Before that, I founded Tunestack, a music-based social network.
       </p>
       <p>
@@ -47,9 +44,9 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
       <h2 className={utilStyles.headingLg}>Blog</h2>
       <ColorWrapper>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title, image, copy, tags }) => (
+          {allPostsData.map(({ id, date, title, image, copy, tags }, index) => (
             <li key={id}>
-              <Link href={`/posts/${id}`}>
+              <Link href={`/post/${id}`}>
                 <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
                   <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
@@ -62,7 +59,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
               </Link>
               <ReactTooltip
                 id={`tooltip-${id}`}
-                place="left"
+                place={index % 2 === 0 ? "left" : "right"}
                 type="light"
                 effect="solid"
               >

@@ -4,6 +4,7 @@ import styles from './Layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import ColoredLink from './ColoredLink'
+import ColorWrapper from './ColorWrapper'
 
 const name = 'Sam Winslow'
 export const siteTitle = 'Sam Winslow'
@@ -44,9 +45,9 @@ const Layout = ({
               alt={name}
             />
               <h1 className={utilStyles.heading2Xl} style={{ margin: '1rem' }}>
-                <ColoredLink href="/">
+                <ColorWrapper>
                   {name}
-                </ColoredLink>
+                </ColorWrapper>
               </h1>
           </>
         ) : (

@@ -13,19 +13,35 @@ export const getSortedPostsData = () => {
   const fileNames = fs
     .readdirSync(postsDirectory)
     .filter(name => mdxExtension.test(name))
-  const allPostsData = fileNames.map(fileName => {
-    const id = fileName.replace(mdxExtension, '')
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data } = matter(fileContents)
-    const postMetadata = data as PostMetadata
-    return {
-      id,
-      ...postMetadata,
-      tags: postMetadata?.tags?.sort() || null,
-    }
-  })
-  return allPostsData.sort((a, b) => a.date < b.date ? 1 : -1)
+  const postsData = fileNames
+    .map(fileName => {
+      const id = fileName.replace(mdxExtension, '')
+      const fullPath = path.join(postsDirectory, fileName)
+      const fileContents = fs.readFileSync(fullPath, 'utf8')
+      const { data } = matter(fileContents)
+      const postMetadata = data as PostMetadata
+      return {
+        id,
+        ...postMetadata,
+        tags: postMetadata?.tags?.sort() || null,
+      }
+    })
+    .sort((a, b) => a.date < b.date ? 1 : -1)
+    .map((current, i, allPosts) => {
+      const postWithPointers = {
+        ...current,
+        previous: null,
+        next: null,
+      }
+      if(i > 0) {
+        postWithPointers.previous = allPosts[i - 1].id
+      }
+      if(i < allPosts.length - 2) {
+        postWithPointers.next = allPosts[i + 1].id
+      }
+      return postWithPointers
+    })
+  return postsData 
 }
 
 export const getAllPostIds = () => {
@@ -49,6 +65,8 @@ export const getPostData = async (id: string) => {
   return {
     id,
     source,
-    ...data
+    next: null,
+    previous: null,
+    ...data,
   } as PostData
 }
