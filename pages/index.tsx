@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import ReactTooltip from 'react-tooltip'
 import Layout, { siteTitle } from '../components/Layout'
-import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
@@ -19,7 +18,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
     <Head>
       <title>{siteTitle}</title>
     </Head>
-    <section className={utilStyles.headingMd}>
+    <section className="headingMd">
       <p>
         My name is Sam. I am currently a full-stack engineer at PostHog. Before that, I founded Tunestack, a music-based social network.
       </p>
@@ -41,9 +40,9 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
       </section>
     )}
     <section>
-      <h2 className={utilStyles.headingLg}>Blog</h2>
+      <h2 className="headingLg">Blog</h2>
       <ColorWrapper>
-        <ul className={utilStyles.list}>
+        <ul className="list">
           {allPostsData.map(({ id, date, title, image, copy, tags }, index) => (
             <li key={id}>
               <Link href={`/post/${id}`}>
@@ -54,7 +53,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
                     />
                   }
                   <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
-                    <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                    <h3 className="headingMd" style={{ display: 'inline-block', marginRight: '0.5em' }}>
                       {title}
                     </h3>
                     <Byline date={date} tags={tags} />
@@ -84,12 +83,12 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
       </ColorWrapper>
     </section>
     <section>
-      <h2 className={utilStyles.headingLg}>Find me elsewhere</h2>
+      <h2 className="headingLg">Find me elsewhere</h2>
       <ColorWrapper>
-        <ul className={utilStyles.list}>
+        <ul className="list">
           { socialLinks.map(({ site, url, introText }) => (
-            <li className={utilStyles.listItem} key={url}>
-              <h3 className={utilStyles.headingMd} style={{ display: 'flex' }}>
+            <li className="listItem" key={url}>
+              <h3 className="headingMd" style={{ display: 'flex' }}>
                 <div style={{ minWidth: '6em', opacity: 0.5 }}>
                   {introText}:
                 </div>

@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
-import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import hydrate from 'next-mdx-remote/hydrate'
 import MDXComponents from '../../components/MDXComponents'
@@ -61,7 +60,7 @@ const Post = ({
         <title>{title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{title}</h1>
+        <h1 className="headingXl">{title}</h1>
         <Byline date={date} tags={tags} expanded />
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
         <div className="mdx-wrapper">{content}</div>

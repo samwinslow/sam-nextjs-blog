@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './Layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import ColoredLink from './ColoredLink'
 import ColorWrapper from './ColorWrapper'
@@ -17,7 +15,7 @@ const Layout = ({
   home?: boolean
 }) => {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -33,18 +31,18 @@ const Layout = ({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
+      <header className="header">
         {home ? (
           <>
             <Image
               priority
               src="/img/profile.jpg"
-              className={utilStyles.borderCircle}
+              className="borderCircle"
               height={144}
               width={144}
               alt={name}
             />
-              <h1 className={utilStyles.heading2Xl} style={{ margin: '1rem' }}>
+              <h1 className="heading2Xl" style={{ margin: '1rem' }}>
                 <ColorWrapper>
                   {name}
                 </ColorWrapper>
@@ -57,14 +55,14 @@ const Layout = ({
                 <Image
                   priority
                   src="/img/profile.jpg"
-                  className={utilStyles.borderCircle}
+                  className="borderCircle"
                   height={108}
                   width={108}
                   alt={name}
                 />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg} style={{ margin: '1rem' }}>
+            <h2 className="headingLg" style={{ margin: '1rem' }}>
               <ColoredLink href="/">
                 {name}
               </ColoredLink>
