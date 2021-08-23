@@ -47,6 +47,8 @@ const Post = ({
     tags,
     source,
     image,
+    next,
+    previous,
   }
 }: {
   postData: PostData
@@ -65,6 +67,14 @@ const Post = ({
         <div className="mdx-wrapper">{content}</div>
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
       </article>
+      <footer style={{ marginTop: '1em' }}>
+        <div>
+          { previous && <span>Previous: <SlugItem text={previous} href={`/post/${previous}`} /></span> }
+        </div>
+        <div>
+          { next && <span>Next: <SlugItem text={next} href={`/post/${next}`} /></span> }
+        </div>
+      </footer>
     </Layout>
   )
 }

@@ -30,19 +30,21 @@ export const getSortedPostsData = () => {
     .map((current, i, allPosts) => {
       const postWithPointers = {
         ...current,
-        previous: null,
         next: null,
+        previous: null,
       }
       if(i > 0) {
-        postWithPointers.previous = allPosts[i - 1].id
+        postWithPointers.next = allPosts[i - 1].id
       }
       if(i < allPosts.length - 2) {
-        postWithPointers.next = allPosts[i + 1].id
+        postWithPointers.previous = allPosts[i + 1].id
       }
       return postWithPointers
     })
   return postsData 
 }
+
+const sortedPosts = getSortedPostsData()
 
 export const getAllPostIds = () => {
   const fileNames = fs.readdirSync(postsDirectory)
@@ -62,11 +64,13 @@ export const getPostData = async (id: string) => {
   const source = await renderToString(content, {
     components: MDXComponents
   })
+  const postWithPointers = sortedPosts.find(({ id: postId }) => postId === id)
+
   return {
     id,
     source,
-    next: null,
-    previous: null,
+    next: postWithPointers?.next || null,
+    previous: postWithPointers?.previous || null,
     ...data,
   } as PostData
 }

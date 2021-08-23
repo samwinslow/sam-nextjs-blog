@@ -47,31 +47,37 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
           {allPostsData.map(({ id, date, title, image, copy, tags }, index) => (
             <li key={id}>
               <Link href={`/post/${id}`}>
-                <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
-                  <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
-                    {title}
-                  </h3>
-                  <Byline date={date} tags={tags} />
-                  <div style={{ opacity: 0.5, color: 'var(--text)' }}>
-                    {copy}
+                <div>
+                  { image && index === 0 && <img
+                      src={`/img/${image}`}
+                      style={{ width: '100%', cursor: 'pointer' }}
+                    />
+                  }
+                  <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
+                    <h3 className={utilStyles.headingMd} style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                      {title}
+                    </h3>
+                    <Byline date={date} tags={tags} />
+                    <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                      {copy}
+                    </div>
                   </div>
                 </div>
               </Link>
-              <ReactTooltip
-                id={`tooltip-${id}`}
-                place={index % 2 === 0 ? "left" : "right"}
-                type="light"
-                effect="solid"
-              >
-                {
-                  image && (
-                    <img
+              { index > 0 &&
+                <ReactTooltip
+                  id={`tooltip-${id}`}
+                  place={index % 2 === 0 ? "left" : "right"}
+                  type="light"
+                  effect="solid"
+                >
+                  { image && <img
                       src={`/img/${image}`}
                       style={{ width: '12rem' }}
                     />
-                  )
-                }
-              </ReactTooltip>
+                  }
+                </ReactTooltip>
+              }
             </li>
           ))}
         </ul>
