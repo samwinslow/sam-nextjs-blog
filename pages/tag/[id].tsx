@@ -20,7 +20,7 @@ const Tag = ({
   return (
     <Layout>
       <Head>
-        <title>{tag}</title>
+        <title>Tag: {tag} • Sam Winslow</title>
       </Head>
       <section>
         <p>
