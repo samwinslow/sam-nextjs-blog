@@ -13,7 +13,7 @@ const TreeNavigation = ({ postIds, relation }: { postIds: string[], relation: st
   <div className={`tree-nav ${relation}`}>
     {pluralize(relation, postIds.length) + ': '}
     { postIds.map(id => (
-      <SlugItem href={`/posts/${id}`} text={id} />
+      <SlugItem href={`/post/${id}`} text={id} />
     ))}
   </div>
 )
