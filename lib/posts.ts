@@ -27,21 +27,12 @@ export const getSortedPostsData = () => {
       }
     })
     .sort((a, b) => a.date < b.date ? 1 : -1)
-    .map((current, i, allPosts) => {
-      const postWithPointers = {
-        ...current,
-        next: null,
-        previous: null,
-      }
-      if(i > 0) {
-        postWithPointers.next = allPosts[i - 1].id
-      }
-      if(i < allPosts.length - 2) {
-        postWithPointers.previous = allPosts[i + 1].id
-      }
-      return postWithPointers
-    })
-  return postsData 
+    .map((current, i, allPosts) => ({
+      ...current,
+      next: i > 0 ? allPosts[i - 1].id : null,
+      previous: i < allPosts.length - 2 ? allPosts[i + 1].id : null,
+    }))
+  return postsData
 }
 
 const sortedPosts = getSortedPostsData()
@@ -50,16 +41,15 @@ export const getAllPostIds = () => {
   const fileNames = fs
     .readdirSync(postsDirectory)
     .filter(name => mdxExtension.test(name))
-  return fileNames.map(fileName => {
-    return {
+  return fileNames.map(fileName => ({
       params: {
         id: fileName.replace(mdxExtension, '')
       }
     }
-  })
+  ))
 }
 
-export const getPostData = async (id: string) => {
+export const getPostData = async (id: string): Promise<PostData> => {
   const fullPath = path.join(postsDirectory, `${id}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
@@ -76,3 +66,6 @@ export const getPostData = async (id: string) => {
     ...data,
   } as PostData
 }
+
+export const getPostsByTag = async (tag: string): Promise<PostData[]> =>
+  sortedPosts.filter(({ tags }) => tags?.includes(tag))

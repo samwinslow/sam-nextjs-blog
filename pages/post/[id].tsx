@@ -5,7 +5,6 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import hydrate from 'next-mdx-remote/hydrate'
 import MDXComponents from '../../components/MDXComponents'
 import { PostData } from '../../lib/types'
-import Link from 'next/link'
 import pluralize from 'pluralize'
 import { SlugItem } from '../../components/SlugItem'
 import { Byline } from '../../components/Byline'
@@ -45,7 +44,6 @@ const Post = ({
     children,
     tags,
     source,
-    image,
     next,
     previous,
   }
