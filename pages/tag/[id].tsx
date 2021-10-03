@@ -23,6 +23,11 @@ const Tag = ({
         <title>{tag}</title>
       </Head>
       <section>
+        <p>
+          <Link href="/tags">
+            &larr; all tags
+          </Link>
+        </p>
         <h2 className="headingLg">
           {tag}{' '}
           <span style={{
@@ -87,7 +92,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       id: tag
     }
   }))
-  console.log(paths)
   return {
     paths,
     fallback: false
