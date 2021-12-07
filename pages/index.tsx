@@ -20,7 +20,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
     </Head>
     <section className="headingMd">
       <p>
-        My name is Sam. I am currently a full-stack engineer at PostHog. Before that, I founded Tunestack, a music-based social network.
+        My name is Sam. I am a self-taught software engineer interested in tech for music and creativity.
       </p>
       <p>
         I studied the interaction of technology &amp; society at NYU, and have also worked as a designer and marketer.
