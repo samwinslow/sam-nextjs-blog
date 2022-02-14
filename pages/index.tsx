@@ -87,14 +87,14 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
       <ColorWrapper>
         <ul className="list">
           { socialLinks.map(({ site, url, introText }) => (
-            <li className="listItem" key={url}>
-              <h3 className="headingMd" style={{ display: 'flex' }}>
+            <li key={url}>
+              <h3 className="headingMd" style={{ display: 'flex', wordBreak: 'break-word' }}>
                 <div style={{ minWidth: '6em', opacity: 0.5 }}>
                   {introText}:
                 </div>
                 <div>
                   <Link href={url}>
-                    {url.replace(/^https?:\/\//, '')}
+                    {url.replace(/(^https?:\/\/)|(\.com)/g, '')}
                   </Link>
                 </div>
               </h3>
