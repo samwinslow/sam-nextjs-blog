@@ -31,9 +31,8 @@ const Layout = ({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className="header">
-        {home ? (
-          <>
+      {home ? (
+          <header className="header">
             <Image
               priority
               src="/img/profile.jpg"
@@ -42,34 +41,21 @@ const Layout = ({
               width={144}
               alt={name}
             />
-              <h1 className="heading2Xl" style={{ margin: '1rem' }}>
-                <ColorWrapper>
-                  {name}
-                </ColorWrapper>
-              </h1>
-          </>
+            <h1 className="heading2Xl" style={{ margin: '1rem' }}>
+              <ColorWrapper>
+                {name}
+              </ColorWrapper>
+            </h1>
+          </header>
         ) : (
-          <>
-            <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/img/profile.jpg"
-                  className="borderCircle"
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className="headingLg" style={{ margin: '1rem' }}>
+          <header className="horizontal">
+            <h2 className="headingLg" style={{ margin: '1rem 0' }}>
               <ColoredLink href="/">
                 {name}
               </ColoredLink>
             </h2>
-          </>
+          </header>
         )}
-      </header>
       <main>{children}</main>
       <footer style={{ marginTop: '3rem' }}>
         <h5 style={{ textAlign: 'center', color: 'var(--muted)', fontWeight: 'normal' }}>
