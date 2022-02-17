@@ -5,16 +5,30 @@ category: "blog"
 tags:
   - javascript
   - aws
+  - ui-ux
 copy: "A social networking app for music lovers to share reviews of their favorite albums."
 image: "tunestack-tags.png"
-children: ["buildings-trees-resilience-covid", "founder-cowering-dog"]
+children: ["buildings-trees-resilience-covid"]
 ---
 
-In January 2020, I founded [Tunestack.fm](https://tunestack.fm), a social networking app for music lovers to share reviews of their favorite albums. We were later accepted into a startup accelerator at the [NYU Entrepreneur Lab](https://entrepreneur.nyu.edu/) and grew our community to 120 users.
+In January 2020, I founded Tunestack.fm, a social networking app for music lovers to share reviews of their favorite albums. We were later accepted into a startup accelerator at the [NYU Entrepreneur Lab](https://entrepreneur.nyu.edu/) and grew our community to more than 200 users.
 
 ![](tunestack-3screens.jpg)
 
-I built and launched the beta version to TestFlight myself, and later onboarded 3 engineers. While the source code is private, here's a breakdown of the technology I used for the beta and initial launch:
+## Mockup
+
+<iframe
+  style={{
+    border: '1px solid rgba(0, 0, 0, 0.1)',
+    borderRadius: '0.5rem',
+    width: '100%'
+  }}
+  height="1000"
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FH6y5QtbmsXxcZuUEwV8Vid%2FTunestack-Redesign-(Demo-Revision)%3Fnode-id%3D3%253A0%26scaling%3Dmin-zoom%26page-id%3D0%253A1%26starting-point-node-id%3D3%253A0"
+  allowfullscreen
+></iframe>
+
+I built and launched the beta version to TestFlight, and later onboarded 3 engineers. While the source code is private, here's a breakdown of the technology we used for the beta and initial launch:
 
 ## Frontend
 - [Expo](https://expo.io/)
@@ -38,7 +52,7 @@ I built and launched the beta version to TestFlight myself, and later onboarded 
 - In terms of syntax and concepts, React Native is only marginally more complex than React, but you have to deal with asynchronous loading actions more explicitly. The browser layer usually abstracts away a lot of this.
 - Redux is useful, but very opinionated and requires a lot of boilerplate. On the plus side, it will force you into an MVC structure and make it easier to debug async code.
 - Serverless functions are great! Never dealing with the OS of a remote machine is awesome. However, there are a few drawbacks:
-  - `serverless-offline` does not perfectly replicate the remote environment. For instance, your Node runtime or ES5/6 syntax support might be different locally. Also, there is no great way to simulate the Cognito authorizer or other Amazon services, so it is often necessary to deploy to a remote dev stage.
+  - `serverless-offline` does not perfectly replicate the remote environment. There is no great way to simulate the Cognito authorizer or other Amazon services, so it is often still necessary to set up a staging server.
   - AWS limits an API Gateway to 200 CloudFormation resources, and each endpoint can generate somewhere between 5-8 resources. So, if you have more than 24-39 endpoints, you will have to either split them into separate stacks and use some DNS records to have them map to the same remote URL, or use fewer, monolithic functions and a package like `aws-serverless-express` to disaggregate them.
   - Serverless helps you manage some, but not all, kinds of secret keys and resource permissions in AWS, and sometimes can even overwrite settings configured through the CLI or web interface.
 - Sequelize is a poorly maintained product and sometimes just acts as an obfuscation layer between your app and SQL database. It is also verbose and slow. Would not use it again, and would instead opt for GraphQL.
