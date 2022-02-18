@@ -4,6 +4,10 @@
   padding: 3rem 1rem 6rem 1rem;
 }
 
+.container-wide {
+  max-width: 60rem;
+}
+
 .header {
   display: flex;
   flex-direction: column;

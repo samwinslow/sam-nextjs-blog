@@ -43,7 +43,7 @@ const Layout = ({
   home?: boolean
 }) => {
   return (
-    <div className="container">
+    <div className={`container${home ? ' container-wide' : ''}`}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta

@@ -7,12 +7,8 @@ import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
 import { PostMetadata } from '../lib/types'
-import Graph from '../components/Graph'
-import concepts from '../lib/concepts.json'
 import { Byline } from '../components/Byline'
 import { Heading } from '../components/Heading'
-
-const showGraph = false
 
 const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
   <Layout home>
@@ -30,16 +26,6 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
         In my free time I love working with electronics, reading, and cycling. I am always at the beginning of my journey to learn.
       </p>
     </section>
-    { showGraph && (
-      <section>
-        <Graph
-          width={800}
-          height={600}
-          concepts={concepts}
-          posts={allPostsData}
-        />
-      </section>
-    )}
     <section>
       <Heading.Lg>Blog</Heading.Lg>
       <ColorWrapper>
