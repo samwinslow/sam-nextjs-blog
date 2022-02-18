@@ -8,6 +8,7 @@ import { PostData } from '../../lib/types'
 import pluralize from 'pluralize'
 import { SlugItem } from '../../components/SlugItem'
 import { Byline } from '../../components/Byline'
+import { Heading } from '../../components/Heading'
 
 const TreeNavigation = ({ postIds, relation }: { postIds: string[], relation: string }) => (
   <div className={`tree-nav ${relation}`}>
@@ -58,7 +59,7 @@ const Post = ({
         <title>{title}</title>
       </Head>
       <article>
-        <h1 className="headingXl">{title}</h1>
+        <Heading.Xl>{title}</Heading.Xl>
         <Byline date={date} tags={tags} expanded />
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
         <div className="mdx-wrapper">{content}</div>

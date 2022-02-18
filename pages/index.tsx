@@ -10,6 +10,7 @@ import { PostMetadata } from '../lib/types'
 import Graph from '../components/Graph'
 import concepts from '../lib/concepts.json'
 import { Byline } from '../components/Byline'
+import { Heading } from '../components/Heading'
 
 const showGraph = false
 
@@ -40,7 +41,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
       </section>
     )}
     <section>
-      <h2 className="headingLg">Blog</h2>
+      <Heading.Lg>Blog</Heading.Lg>
       <ColorWrapper>
         <ul className="list">
           {allPostsData.map(({ id, date, title, image, copy, tags }, index) => (
@@ -53,9 +54,9 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
                     />
                   }
                   <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
-                    <h3 className="headingMd" style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                    <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
                       {title}
-                    </h3>
+                    </Heading.Md>
                     <Byline date={date} tags={tags} />
                     <div style={{ opacity: 0.5, color: 'var(--text)' }}>
                       {copy}
@@ -83,12 +84,12 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
       </ColorWrapper>
     </section>
     <section>
-      <h2 className="headingLg">Find me elsewhere</h2>
+      <Heading.Lg>Find me elsewhere</Heading.Lg>
       <ColorWrapper>
         <ul className="list">
           { socialLinks.map(({ site, url, introText }) => (
             <li key={url}>
-              <h3 className="headingMd" style={{ display: 'flex', wordBreak: 'break-word' }}>
+              <Heading.Md style={{ display: 'flex', wordBreak: 'break-word' }}>
                 <div style={{ minWidth: '6em', opacity: 0.5 }}>
                   {introText}:
                 </div>
@@ -97,7 +98,7 @@ const Index = ({ allPostsData }: { allPostsData: PostMetadata[] }) => (
                     {url.replace(/(^https?:\/\/)|(\.com)/g, '')}
                   </Link>
                 </div>
-              </h3>
+              </Heading.Md>
             </li>
           ))}
         </ul>

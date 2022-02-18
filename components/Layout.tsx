@@ -1,11 +1,39 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import ColoredLink from './ColoredLink'
 import ColorWrapper from './ColorWrapper'
+import { Heading } from './Heading'
 
 const name = 'Sam Winslow'
-export const siteTitle = 'Sam Winslow'
+export const siteTitle = name
+
+const Header = ({ home }: { home: boolean }) => (
+  home ? (
+    <header className="header">
+      <Image
+        priority
+        src="/img/profile.jpg"
+        className="borderCircle"
+        height={144}
+        width={144}
+        alt={name}
+      />
+      <Heading.Xxl style={{ margin: '1rem' }}>
+        <ColorWrapper>
+          {name}
+        </ColorWrapper>
+      </Heading.Xxl>
+    </header>
+  ) : (
+    <header className="horizontal">
+      <Heading.Lg style={{ margin: '1rem 0' }}>
+        <ColoredLink href="/">
+          {name}
+        </ColoredLink>
+      </Heading.Lg>
+    </header>
+  )
+)
 
 const Layout = ({
   children,
@@ -31,31 +59,7 @@ const Layout = ({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      {home ? (
-          <header className="header">
-            <Image
-              priority
-              src="/img/profile.jpg"
-              className="borderCircle"
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1 className="heading2Xl" style={{ margin: '1rem' }}>
-              <ColorWrapper>
-                {name}
-              </ColorWrapper>
-            </h1>
-          </header>
-        ) : (
-          <header className="horizontal">
-            <h2 className="headingLg" style={{ margin: '1rem 0' }}>
-              <ColoredLink href="/">
-                {name}
-              </ColoredLink>
-            </h2>
-          </header>
-        )}
+      <Header home={home} />
       <main>{children}</main>
       <footer style={{ marginTop: '3rem' }}>
         <h5 style={{ textAlign: 'center', color: 'var(--muted)', fontWeight: 'normal' }}>

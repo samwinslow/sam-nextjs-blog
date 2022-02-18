@@ -9,6 +9,7 @@ import { PostData } from '../../lib/types'
 import ColorWrapper from '../../components/ColorWrapper'
 import Link from 'next/link'
 import ReactTooltip from 'react-tooltip'
+import { Heading } from '../../components/Heading'
 
 const Tag = ({
   tag,
@@ -28,7 +29,7 @@ const Tag = ({
             &larr; all tags
           </Link>
         </p>
-        <h2 className="headingLg">
+        <Heading.Lg>
           {tag}{' '}
           <span style={{
             opacity: 0.5,
@@ -38,7 +39,7 @@ const Tag = ({
           }}>
             {pluralize('posts', posts.length, true)}
           </span>
-        </h2>
+        </Heading.Lg>
         <ColorWrapper>
           <ul className="list">
             {posts.map(({ id, date, title, image, copy, tags }, index) => (
@@ -51,9 +52,9 @@ const Tag = ({
                       />
                     }
                     <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
-                      <h3 className="headingMd" style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                      <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
                         {title}
-                      </h3>
+                      </Heading.Md>
                       <Byline date={date} tags={tags} />
                       <div style={{ opacity: 0.5, color: 'var(--text)' }}>
                         {copy}

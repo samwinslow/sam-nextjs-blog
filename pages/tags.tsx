@@ -4,6 +4,7 @@ import { getSortedPostsData } from '../lib/posts'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import Link from 'next/link'
+import { Heading } from '../components/Heading'
 
 interface TagData {
   id: string
@@ -21,7 +22,7 @@ const Tags = ({
         <title>All Tags • Sam Winslow</title>
       </Head>
       <section>
-        <h2 className="headingLg">
+        <Heading.Lg>
           Tags{' '}
           <span style={{
             opacity: 0.5,
@@ -31,14 +32,14 @@ const Tags = ({
           }}>
             {tags.length}
           </span>
-        </h2>
+        </Heading.Lg>
         <ColorWrapper>
           <ul className="list">
             {tags.map(({ id, postCount }, index) => (
               <li key={index}>
                 <Link href={`/tag/${id}`}>
                   <div className="list-link-content">
-                    <h3 className="headingMd" style={{
+                    <Heading.Md style={{
                       display: 'flex',
                       justifyContent: 'space-between',
                       marginBottom: 0
@@ -49,7 +50,7 @@ const Tags = ({
                       <div style={{ opacity: 0.5, color: 'var(--text)' }}>
                         {postCount}
                       </div>
-                    </h3>
+                    </Heading.Md>
                   </div>
                 </Link>
               </li>
