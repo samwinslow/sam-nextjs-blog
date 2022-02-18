@@ -45,3 +45,9 @@
 .lightText {
   color: #666;
 }
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

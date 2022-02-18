@@ -9,7 +9,7 @@ export const siteTitle = name
 
 const Header = ({ home }: { home: boolean }) => (
   home ? (
-    <header className="header">
+    <header className="center">
       <Image
         priority
         src="/img/profile.jpg"
@@ -25,7 +25,7 @@ const Header = ({ home }: { home: boolean }) => (
       </Heading.Xxl>
     </header>
   ) : (
-    <header className="horizontal">
+    <header>
       <Heading.Lg style={{ margin: '1rem 0' }}>
         <ColoredLink href="/">
           {name}

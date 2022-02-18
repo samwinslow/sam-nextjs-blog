@@ -22,15 +22,15 @@ const Index = ({
     <Head>
       <title>{siteTitle}</title>
     </Head>
-    <section className="headingMd" style={{ maxWidth: '36rem' }}>
+    <section className="headingMd center" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
       <p>
-        My name is Sam. I am a self-taught software engineer interested in tech for music and creativity.
+        Hi, I'm Sam. I am interested in tech for music and creativity.
       </p>
       <p>
-        I studied the interaction of technology &amp; society at NYU, and have also worked as a designer and marketer.
+        Before working as a software engineer, I worked as a designer and marketer. My skills are largely self-taught, and I studied communications at NYU.
       </p>
       <p>
-        In my free time I love working with electronics, reading, and cycling. I am always at the beginning of my journey to learn.
+        In my free time I love working with electronics, reading, and flying airplanes.
       </p>
     </section>
     <section>
