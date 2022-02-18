@@ -18,7 +18,7 @@ const Header = ({ home }: { home: boolean }) => (
         width={144}
         alt={name}
       />
-      <Heading.Xxl style={{ margin: '1rem' }}>
+      <Heading.Xxl>
         <ColorWrapper>
           {name}
         </ColorWrapper>

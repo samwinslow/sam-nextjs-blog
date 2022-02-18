@@ -22,7 +22,7 @@ const Index = ({
     <Head>
       <title>{siteTitle}</title>
     </Head>
-    <section className="headingMd">
+    <section className="headingMd" style={{ maxWidth: '36rem' }}>
       <p>
         My name is Sam. I am a self-taught software engineer interested in tech for music and creativity.
       </p>
