@@ -1,21 +1,39 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import { getSortedPostsData } from '../lib/posts'
+import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
+import { TagData } from '../lib/types'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import Link from 'next/link'
 import { Heading } from '../components/Heading'
+import { SlugItem } from '../components/SlugItem'
 
-interface TagData {
-  id: string
-  postCount: number
-}
+const TagsList = ({ tags }: { tags: TagData[] }) => (
+  <ul className="list">
+    {tags.map(({ id, postCount }, index) => (
+      <li key={index}>
+        <Link href={`/tag/${id}`}>
+          <div className="list-link-content">
+            <Heading.Md style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginBottom: 0
+            }}>
+              <div>
+                {id}
+              </div>
+              <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                {postCount}
+              </div>
+            </Heading.Md>
+          </div>
+        </Link>
+      </li>
+    ))}
+  </ul>
+)
 
-const Tags = ({
-  tags,
-}: {
-  tags: TagData[]
-}) => {
+const Tags = ({ tags }: { tags: TagData[] }) => {
   return (
     <Layout>
       <Head>
@@ -34,28 +52,7 @@ const Tags = ({
           </span>
         </Heading.Lg>
         <ColorWrapper>
-          <ul className="list">
-            {tags.map(({ id, postCount }, index) => (
-              <li key={index}>
-                <Link href={`/tag/${id}`}>
-                  <div className="list-link-content">
-                    <Heading.Md style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginBottom: 0
-                    }}>
-                      <div>
-                        {id}
-                      </div>
-                      <div style={{ opacity: 0.5, color: 'var(--text)' }}>
-                        {postCount}
-                      </div>
-                    </Heading.Md>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <TagsList tags={tags} />
         </ColorWrapper>
       </section>
     </Layout>
@@ -64,23 +61,19 @@ const Tags = ({
 
 export default Tags
 
+export const TagsCloud = ({ tags }: { tags: TagData[] }) => (
+  <div>
+    {tags.map(({ id, postCount }, i) => (
+      <SlugItem key={i} href={`/tag/${id}`} text={`${id} ${postCount}`} />
+    ))}
+  </div>
+)
+
 export const getStaticProps: GetStaticProps = async () => {
-  const tagRecord: Record<string, number> = {}
   const posts = await getSortedPostsData()
-  posts.forEach(({ tags: postTags }) => {
-    postTags?.forEach(tag => {
-      if (tag in tagRecord) {
-        tagRecord[tag] += 1
-      } else {
-        tagRecord[tag] = 1
-      }
-    })
-  })
   return {
     props: {
-      tags: Object.entries(tagRecord)
-        .map(([id, postCount]) => ({ id, postCount }))
-        .sort((a, b) => b.postCount - a.postCount),
+      tags: getTagsFromPosts(posts),
     }
   }
 }

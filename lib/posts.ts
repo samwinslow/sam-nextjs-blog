@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import renderToString from 'next-mdx-remote/render-to-string'
 import MDXComponents from '../components/MDXComponents'
-import { PostData, PostMetadata } from './types'
+import { PostData, PostMetadata, TagData } from './types'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -69,3 +69,21 @@ export const getPostData = async (id: string): Promise<PostData> => {
 
 export const getPostsByTag = async (tag: string): Promise<PostData[]> =>
   sortedPosts.filter(({ tags }) => tags?.includes(tag))
+
+
+export const getTagsFromPosts = (posts: any[]): TagData[] => {
+  const tagRecord: Record<string, number> = {}
+  posts.forEach(({ tags: postTags }) => {
+    postTags?.forEach(tag => {
+      if (tag in tagRecord) {
+        tagRecord[tag] += 1
+      } else {
+        tagRecord[tag] = 1
+      }
+    })
+  })
+
+  return Object.entries(tagRecord)
+    .map(([id, postCount]) => ({ id, postCount }))
+    .sort((a, b) => b.postCount - a.postCount)
+}

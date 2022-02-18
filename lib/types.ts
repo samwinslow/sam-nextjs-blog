@@ -14,4 +14,9 @@ export type PostData = {
   next: string | null
 }
 
+export interface TagData {
+  id: string
+  postCount: number
+}
+
 export type PostMetadata = Exclude<PostData, 'source'>
