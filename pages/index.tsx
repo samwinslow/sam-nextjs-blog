@@ -34,7 +34,7 @@ const Index = ({
       </p>
     </section>
     <section>
-      <Heading.Lg>Blog</Heading.Lg>
+      <Heading.Lg>Words</Heading.Lg>
       <div className="row">
         <div className="col col-4" style={{ paddingBottom: '0.5rem' }}>
            <img
@@ -83,7 +83,7 @@ const Index = ({
       
     </section>
     <section>
-      <Heading.Lg>Find me elsewhere</Heading.Lg>
+      <Heading.Lg>Connections</Heading.Lg>
       <ColorWrapper>
         <ul className="list">
           { socialLinks.map(({ site, url, introText }) => (

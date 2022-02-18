@@ -1,22 +1,22 @@
 [
   {
+    "site": "CV",
+    "url": "https://read.cv/sbw",
+    "introText": "resume"
+  },
+  {
     "site": "GitHub",
     "url": "https://github.com/samwinslow",
-    "introText": "always"
+    "introText": "code"
   },
   {
     "site": "Twitter",
     "url": "https://twitter.com/sambwinslow",
-    "introText": "often"
+    "introText": "words"
   },
   {
     "site": "Instagram",
     "url": "https://instagram.com/samscalligraphy",
-    "introText": "sometimes"
-  },
-  {
-    "site": "LinkedIn",
-    "url": "https://linkedin.com/in/sambwinslow",
-    "introText": "rarely"
+    "introText": "shapes"
   }
 ]
