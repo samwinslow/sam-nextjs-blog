@@ -1,0 +1,16 @@
+[
+  {
+    "uri": "/post/tunestack",
+    "title": "Tunestack",
+    "subtitle": "Social networking app for music lovers",
+    "desc": "React Native, AWS, Serverless Framework",
+    "image": "tunestack-3screens.jpg"
+  },
+  {
+    "uri": "https://3d-airspace.vercel.app/",
+    "title": "Tunestack",
+    "subtitle": "Social networking app for music lovers",
+    "desc": "React Native, AWS, Serverless Framework",
+    "image": "srnicek-williams.png"
+  }
+]

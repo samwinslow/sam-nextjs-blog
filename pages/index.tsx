@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
+import hostedProjects from '../lib/hosted-projects.json'
 import { PostMetadata, TagData } from '../lib/types'
 import { Byline } from '../components/Byline'
 import { Heading } from '../components/Heading'
@@ -32,6 +33,26 @@ const Index = ({
       <p>
         In my free time I love working with electronics, reading, and flying airplanes.
       </p>
+    </section>
+    <section>
+      <Heading.Lg>Projects</Heading.Lg>
+      <div className="pretty-grid">
+        {hostedProjects.map(({ uri, title, subtitle, desc, image }) => (
+          <div
+            key={uri}
+            style={{
+              backgroundImage: `url(/img/${image})`
+            }}
+          >
+            <Link href={uri}>
+              <div className="inner">
+                <h3>{title}</h3>
+                <p>{subtitle}</p>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
     </section>
     <section>
       <Heading.Lg>Words</Heading.Lg>
