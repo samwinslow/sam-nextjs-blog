@@ -91,3 +91,6 @@
   font-size: 0.75em;
 }
 
+a.externalLink, a.externalLink * {
+  text-decoration: none;
+}

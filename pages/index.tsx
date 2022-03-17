@@ -11,6 +11,7 @@ import { PostMetadata, TagData } from '../lib/types'
 import { Byline } from '../components/Byline'
 import { Heading } from '../components/Heading'
 import { TagsCloud } from './tags'
+import ConditionalExternalLink from '../components/ConditionalExternalLink'
 
 const Index = ({
   allPostsData,
@@ -44,12 +45,12 @@ const Index = ({
               backgroundImage: `url(/img/${image})`
             }}
           >
-            <Link href={uri}>
+            <ConditionalExternalLink href={uri}>
               <div className="inner">
                 <h3>{title}</h3>
                 <p>{subtitle}</p>
               </div>
-            </Link>
+            </ConditionalExternalLink>
           </div>
         ))}
       </div>
