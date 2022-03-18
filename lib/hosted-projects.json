@@ -12,5 +12,19 @@
     "subtitle": "FAA airspace classes, visualized",
     "desc": "Harp.gl and public domain data",
     "image": "faa-airspace.gif"
+  },
+  {
+    "uri": "https://github.com/samwinslow/three.js-audio-demo",
+    "title": "Three.js Synthesizer",
+    "subtitle": "A musical instrument in 3 dimensions",
+    "desc": "Three.js, Web MIDI",
+    "image": "threejs-audio.gif"
+  },
+  {
+    "uri": "https://github.com/samwinslow/rand-thesaurus",
+    "title": "Rand Thesaurus",
+    "subtitle": "Thesaurus webapp for generating synonyms & exploring syntax",
+    "desc": "React",
+    "image": "rand-thesaurus.png"
   }
 ]
