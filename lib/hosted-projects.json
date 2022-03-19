@@ -14,7 +14,7 @@
     "image": "faa-airspace.gif"
   },
   {
-    "uri": "https://github.com/samwinslow/three.js-audio-demo",
+    "uri": "https://three-js-audio-demo.vercel.app/",
     "title": "Three.js Synthesizer",
     "subtitle": "A musical instrument in 3 dimensions",
     "desc": "Three.js, Web MIDI",
