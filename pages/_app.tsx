@@ -16,7 +16,10 @@ const App = ({ Component, pageProps }: AppProps) => {
     router.events.on('routeChangeComplete', () => NProgress.done())
 
     // Capture PostHog analytics
-    posthog.init('API_KEY', { api_host:'https://app.posthog.com' })
+    posthog.init(
+      process.env.NEXT_PUBLIC_PH_API_KEY,
+      { api_host:'https://app.posthog.com' }
+    )
     const capturePageview = () => posthog.capture('$pageview')
 
     router.events.on('routeChangeComplete', capturePageview)
@@ -24,7 +27,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     return () => {
       router.events.off('routeChangeComplete', capturePageview)
     }
-  })
+  }, [])
   return <Component {...pageProps} />
 }
 
