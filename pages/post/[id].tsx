@@ -47,6 +47,7 @@ const Post = ({
     source,
     next,
     previous,
+    image,
   }
 }: {
   postData: PostData
@@ -57,6 +58,10 @@ const Post = ({
     <Layout>
       <Head>
         <title>{title}</title>
+        { image && <meta
+          property="og:image"
+          content={`https://samwinslow.net/_next/image?${encodeURIComponent('/img/'+ image)}&w=1200&q=75`}
+        />}
       </Head>
       <article>
         <Heading.Xl>{title}</Heading.Xl>
