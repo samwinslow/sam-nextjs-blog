@@ -1,0 +1,85 @@
+---
+date: "2023-01-09"
+title: "Seven Invites: Editable flyers"
+category: "blog"
+tags:
+  - ui-ux
+  - javascript
+copy: "As founding engineer, I built many of the creative & social features for this app. Here's one."
+image: "seven_ui.png"
+---
+
+At Seven, a party-planning and group messaging app, we noticed many of our users wanted the same basic things:
+
+- an attractive first impression for their event guests
+- a rich event preview which can be shared on social feeds and messaging
+- a source of truth for the basic event details (what, when, where)
+
+Some of the savviest people on our app would use Canva or screenshot the Instagram story composer to create their own flyers, but we wanted to make it possible to do this within our app.
+
+I led design and development of this feature across the full stack. We had to solve for a few concerns besides user preference as well, and I'll get to those in the **Technical overview** below.
+
+## UI/UX overview
+
+During the create flow, users can keep the default "You're Invited" flyer, choose a custom photo, or create a new one in the editor.
+
+![](seven_ui-00.png)
+
+<div class="layout-row">
+  <div class="col">
+    <img src="seven_ui-01.jpg" />
+    <small>Sensible default with a neutral background. Scrolling down reveals the available options.</small>
+  </div>
+  <div class="col">
+    <img src="seven_ui-02.jpeg" />
+  </div>
+</div>
+
+![](seven_ui.png)
+
+Even with our default image backgrounds (curated from [Unsplash](https://unsplash.com/)), it is quite easy to make a striking first impression for an event.
+
+There are a few UI details which demonstrate the level of craft I put into my work. The first is an animated color picker:
+
+![](seven_ui-03.gif)
+
+and the second is a subtle blur to give the font size selector a legible, glassy appearance on any background:
+
+![](seven_ui-04.png)
+
+<br />
+
+## Technical overview
+
+### Platform constraints
+
+Being a React Native app with iOS and web targets, I had ensure all our libraries were compatible with iOS and web, which sometimes meant writing my own polyfills.
+
+### Reproducible designs
+
+I essentially built a very simple SVG composer. However, many contexts require raster images, so we set up a serverless function to render arbitrary SVG content, then persist and return a link to a hosted JPEG.
+
+This backend context actually runs a Chromium instance, meaning we can support web fonts and other advanced SVG features.
+
+### Async, event-driven updates
+
+Users who had hacked together their own flyer solutions found it frustrating that they'd have to manually edit the flyer if they changed something about the event, such as the start time.
+
+Because we were already generating images on the backend, we could trigger a re-render whenever certain properties of the event changed, regardless of what type of client caused the update.
+
+However, SVG is not an easily editable format. If the only "rich" representation of the flyer were SVG, making changes would involve walking an XML tree and updating the relevant nodes.
+
+That didn't sound like fun, so we stored details about the flyer at a higher level of abstraction. The text content, e.g. start time, is stored on the event itself.
+
+```
+type Flyer extending EventImage {
+  required property backgroundImageURL -> str;
+  required property dimBackground -> bool;
+  property height -> int16;
+  property width -> int16;
+  property font -> json;
+  property includedFields -> array<str>;
+}
+```
+
+And that's it. I hoped you enjoyed an inside look at this feature.

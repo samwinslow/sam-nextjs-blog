@@ -1,10 +1,10 @@
 [
   {
-    "uri": "/post/tunestack",
-    "title": "Tunestack",
-    "subtitle": "Social networking app for music lovers",
-    "desc": "React Native, AWS, Serverless Framework",
-    "image": "tunestack-3screens.jpg"
+    "uri": "/post/seven-invites",
+    "title": "Seven Invites: Editable flyers",
+    "subtitle": "Adventures in cross-platform image composition",
+    "desc": "React Native",
+    "image": "seven_ui.png"
   },
   {
     "uri": "https://3d-airspace.vercel.app/",
@@ -14,17 +14,17 @@
     "image": "faa-airspace.gif"
   },
   {
+    "uri": "/post/tunestack",
+    "title": "Tunestack",
+    "subtitle": "Social networking app for music lovers",
+    "desc": "React Native, AWS, Serverless Framework",
+    "image": "tunestack-3screens.jpg"
+  },
+  {
     "uri": "https://three-js-audio-demo.vercel.app/",
     "title": "Three.js Synthesizer",
     "subtitle": "A musical instrument in 3 dimensions",
     "desc": "Three.js, Web MIDI",
     "image": "threejs-audio.gif"
-  },
-  {
-    "uri": "https://github.com/samwinslow/rand-thesaurus",
-    "title": "Rand Thesaurus",
-    "subtitle": "Thesaurus webapp for generating synonyms & exploring syntax",
-    "desc": "React",
-    "image": "rand-thesaurus.png"
   }
 ]

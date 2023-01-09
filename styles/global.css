@@ -50,12 +50,10 @@ p {
 a {
   color: var(--link);
   text-decoration: none;
-  transition: opacity 0.2s ease;
 }
 
-a:hover, a:hover * {
+a:hover {
   text-decoration: underline;
-  opacity: 0.8;
 }
 
 .list-link-content h3 {
@@ -127,10 +125,19 @@ hr {
   border-bottom: 1px solid var(--light);
 }
 
+pre, code {
+  font-family: var(--mono-font-family);
+  line-height: 1.2;
+}
+
+pre {
+  padding: 0.4rem 0.8rem;
+  background-color: var(--bg-light);
+  border-radius: 0.4rem;
+}
+
 code {
   font-size: 80%;
-  background: var(--light);
-  padding: 0.1rem 0.3rem;
   border-radius: 0.2rem;
 }
 

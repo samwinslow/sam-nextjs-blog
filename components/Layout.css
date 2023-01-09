@@ -69,16 +69,9 @@
   user-select: none;
 }
 
-/* 
-.pretty-grid > div:hover {
-  filter: invert(100%);
-} */
-
 .pretty-grid > div:hover .inner {
   opacity: 1;
-  /* background-color: hsla(160, 80%, 20%, 0.4); */
-  background-color: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(1em);
+  background-color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
 }
 
@@ -93,4 +86,16 @@
 
 a.externalLink, a.externalLink * {
   text-decoration: none;
+}
+
+.layout-row {
+  display: flex;
+  flex-direction: row;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.layout-row .col {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
