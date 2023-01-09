@@ -50,12 +50,10 @@ p {
 a {
   color: var(--link);
   text-decoration: none;
-  transition: opacity 0.2s ease;
 }
 
-a:hover, a:hover * {
+a:hover {
   text-decoration: underline;
-  opacity: 0.8;
 }
 
 .list-link-content h3 {
