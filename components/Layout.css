@@ -87,3 +87,15 @@
 a.externalLink, a.externalLink * {
   text-decoration: none;
 }
+
+.layout-row {
+  display: flex;
+  flex-direction: row;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.layout-row .col {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
