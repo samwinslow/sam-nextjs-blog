@@ -1,0 +1,120 @@
+---
+date: "2023-05-08"
+title: "Truth in language"
+category: "blog"
+tags:
+  - ideas
+copy: "Talking myself into a political corner with ChatGPT"
+image: "shoggoth-AST.jpeg"
+---
+
+**Is it possible to create a language in which true statements are ungrammatical?**
+
+It is theoretically possible to create a language in which true statements are ungrammatical, but it would be highly unusual and would likely not be a very practical or functional language.
+
+Language is a means of communication, and the primary purpose of language is to convey meaning from one person to another. In order for a language to be useful, it must have a certain level of consistency and predictability. The grammar of a language provides the rules for constructing meaningful sentences that can be understood by speakers of the language.
+
+If true statements were ungrammatical in a language, then the language would be highly unpredictable and difficult to use effectively.
+
+**Interesting. Let's reason together about which "layers" would be required to make such a language a reality.**
+
+**There might be a layer which deals specifically with logical truth, e.g. `A therefore not A`, `any integer n plus one is equal to n` would be ungrammatical (false) by the rules of this language.**
+
+**Similarly, there might be an interface layer between plain English text and a symbolic representation which is easier to verify, such that the truth value of a statement like `Everyone in the classroom wears a blue shirt. One of the students outside the classroom is wearing a blue shirt. Therefore, everyone (universally) wears a blue shirt` would be evaluated as false because it is an improper use of the [existential quantifier](https://en.wikipedia.org/wiki/Existential_quantification).**
+
+**What layers might be required for this language system to evaluate the truth value of more ambiguous statements like "The ground is wet because it is raining" or "Political party A's policies are bad for society?"**
+
+At the lowest level, as you mentioned, there might be a logical layer that deals specifically with logical truth, such as the principle of non-contradiction, where statements of the form "A therefore not A" would be considered ungrammatical. This layer would provide the foundation for evaluating the truth value of statements that can be reduced to logical form.
+
+In addition, there might be a layer that provides a symbolic representation of English text that is easier to verify, such as using first-order logic or propositional logic to translate sentences into a symbolic form that can be evaluated more easily.
+
+However, as you pointed out, evaluating the truth value of more ambiguous statements would require additional layers. For example, the statement "The ground is wet because it is raining" could be interpreted in different ways, such as causality or correlation, and would require additional layers to evaluate properly. One way to address this might be to add a layer that provides context, such as a database of common knowledge or external knowledge sources, that can help disambiguate the statement and evaluate its truth value more accurately.
+
+Similarly, evaluating statements that involve opinions or subjective judgments, such as "Political party A's policies are bad for society," would require additional layers that can capture the subjective nature of the statement. This might involve adding a layer that captures the speaker's beliefs, values, or opinions, or a layer that accounts for cultural or social context.
+
+**What else could we add to this system? Right now, our system has about as much explanatory power as a static analyzer for computer code.**
+
+One possible layer that could be added is a knowledge base that contains information about the world, including facts, beliefs, and opinions. This knowledge base could be constantly updated with new information from various sources, such as news articles, scientific studies, and social media, and could be used to evaluate the truth value of statements that cannot be reduced to logical form.
+
+Another layer that could be added is a natural language understanding system that can recognize and interpret the nuances of language, including metaphors, idioms, and sarcasm. This layer would be crucial for interpreting more ambiguous or figurative statements that cannot be translated into a formal logic language.
+
+Finally, a feedback layer could be added to the system that allows for iterative refinement and improvement of the system over time. This layer could use machine learning algorithms to learn from user feedback and continuously update and improve the language system.
+
+**I like the idea of systematizing knowledge, however, wouldn't another layer be required to determine the truth value of statements, research results, and so on which become facts within this knowledge system? What would the architecture of that subsystem look like?**
+
+**Next, how would metaphors, idioms, and sarcasm be identified and the meaning of such statements be elucidated? Keep in mind that we want to arrive at a universal, single source of truth, which should be maximally accessible by people of every cultural, political, and social background. We must also assume that a the universal truth value of a statement *is* knowable, and that the social or cultural identity of the person or agent making such a statement has no effect on its truth value.**
+
+**Last, this feedback layer is interesting, however our goal is to create a language system in which falsehoods cannot be represented in the first place. Therefore, feedback which is predicated on correcting the mistakes of a language system which represents only infallible truth has no effect. Iterative feedback on truth-statements in such a language would be [idempotent](https://en.wikipedia.org/wiki/Idempotence).**
+
+You raise some good points. Here are some possible additional layers that could be added to address them:
+
+To determine the truth value of statements that become facts in the knowledge base, a fact-checking layer could be added to the system. This layer would use a combination of automated methods and human fact-checkers to verify the accuracy of statements before they are added to the knowledge base.
+
+To identify and interpret metaphors, idioms, and sarcasm, a natural language understanding system could be used. This could be accomplished using machine learning algorithms trained on large datasets of annotated text that include examples of figurative language.
+
+To ensure a universal, single source of truth, the system would need to be designed to minimize bias and avoid any potential sources of error. This could be accomplished by using a diverse set of fact-checkers and incorporating multiple perspectives on a given issue. The system could also be designed to consider evidence-based facts over opinions or beliefs.
+
+Regarding the feedback layer, you make a good point that if the system is designed to only represent infallible truth, then feedback on truth statements would be an idempotent procedure. However, the feedback layer could still be useful for improving the natural language understanding system and for identifying potential sources of bias in the fact-checking process. Additionally, the feedback layer could be used to update the knowledge base with new information as it becomes available.
+
+**Let's go back to one of the difficult-to-evaluate statements I made earlier, namely, "Political party A's policies are bad for society." How would the truth-evaluation system we have described here go about evaluating such a claim?  Please describe it in unambiguous language, just as a database engine might describe a query plan.**
+
+The truth-evaluation system would first need to identify the specific policies of political party A that are being referred to in the statement. It would then need to gather relevant data and evidence on the outcomes and impacts of those policies on society.
+
+This data could come from a variety of sources, such as government reports, academic studies, and expert opinions. The system would need to evaluate the quality and reliability of each source and use this information to weight the evidence accordingly.
+
+Once the evidence has been gathered and evaluated, the system would use a set of pre-defined criteria to determine whether the policies in question are, in fact, bad for society. These criteria could include measures such as economic performance, social well-being, and environmental sustainability, among others.
+
+The system would then use the evidence and the criteria to generate a truth value for the statement. This truth value could be expressed as a binary value (true or false) or a probabilistic value (e.g. 80% likely to be true).
+
+The specific steps and processes involved in evaluating the truth value of the statement would depend on the details of the policies in question and the available evidence.
+
+**This makes sense as a general approach, thanks. What if the ground truth of the matter "Political party A's policies are bad for society" is actually "political party A's policies are bad for people with group identity B," and that members of group B outnumber members of group A?**
+
+The system would need to consider the available evidence on the impacts of political party A's policies on different groups within society, including members of group B.
+
+The system would then need to use a set of pre-defined criteria to determine whether political party A's policies are, in fact, bad for people with group identity B. This could involve comparing the outcomes and impacts of the policies on different groups within society and evaluating whether the policies disproportionately harm members of group B.
+
+Ultimately, the truth value of the statement would depend on the available evidence and the criteria used to evaluate it. If the evidence suggests that political party A's policies are indeed bad for people with group identity B, then the statement could be evaluated as true. However, if the evidence is inconclusive or suggests that the policies are not actually harmful to members of group B, then the statement could be evaluated as false.
+
+**What if another group, Party C, decides that this system of evaluating knowledge is itself insufficient or corrupt? For example, Party C does not want to enter evidence in a way which is legible to our system because they believe the language system is itself biased against all parties, A, B, and C. How can our system update its model of reality to account for this?**
+
+If Party C believes that the language system is biased against all parties, then it may be helpful to explore the reasons behind their beliefs and to evaluate the validity of their claims. One possible approach would be to conduct a meta-analysis of the language system's performance, which involves collecting and analyzing data from multiple sources to evaluate the reliability and validity of the system's output.
+
+Another approach could be to engage in dialogue with Party C and work collaboratively to identify any biases in the language system and to develop strategies to mitigate them. This might involve adjusting the rules and algorithms used by the system to account for new information or perspectives, or incorporating additional training data from diverse sources.
+
+Overall, it is important to remain open to feedback and to be willing to adapt the system to address any concerns or criticisms raised by stakeholders. This may involve ongoing updates and revisions to the system.
+
+**As friendly and helpful as that sounds, what if Party C asserts that a statement such as "remain[ing] open to feedback and to be willing to adapt the system to address any concerns or criticisms raised by stakeholders" is in itself rooted in a desire to expand the capabilities of the language system to oppress or exploit group C?**
+
+**In a hypothetical scenario where enough layers and feedback channels in place such that the overall language system truly does ONLY represent universal truths, is it still possible for the language system to oppress or exploit anyone?**
+
+It is difficult to completely rule out the possibility of a language system oppressing or exploiting someone, even if it is designed to represent only universal truths. This is because the language system could potentially be used in a biased or unfair way by those who have control over it, or by those who interpret the results generated by it. Additionally, the language system could potentially contain biases or limitations in its design or implementation that could lead to unjust outcomes.
+
+However, if the language system is truly designed to represent only universal truths, and if it is used and interpreted in a fair and unbiased way, then it should not be a tool of oppression or exploitation. In such a scenario, the language system would be a tool for discovering and disseminating objective, evidence-based knowledge, which could ultimately help to promote greater understanding and cooperation across diverse communities.
+
+**Let's say that Party C has a value system that is very different than what we regard as universally true. To such a person, the goal of "understanding and cooperation across diverse communities" is repulsive, impossible, or foolish. Given the adaptability of this language system, is the system obligated to treat Party C differently because that party does not agree with the universal truths?**
+
+**This would satisfy Party C, and therefore be a positive, helpful output toward the direct user of this system; possibly at the expense of other parties.**
+
+The language system is designed to evaluate statements based on objective truth values, regardless of whether they align with any particular individual or group's value system. While the system may consider different perspectives and sources of information, it ultimately aims to identify and represent only those statements that are true or false.
+
+If Party C holds values that are in conflict with universal truths, the language system would not be obligated to treat them differently or give them special consideration. The system would still evaluate their statements based on their truth value, and if those statements were objectively false, they would not be represented as true within the system.
+
+It's important to note that the goal of understanding and cooperation across diverse communities is not inherently oppressive or exploitative. It simply reflects the value of seeking common ground and working together towards a shared goal, which is a fundamental aspect of many societies and cultures.
+
+
+**Do you have any thoughts on descriptive versus prescriptive theories of grammar as it applies to this thought experiment?**
+
+Yes, the distinction between descriptive and prescriptive theories of grammar is relevant here. Descriptive theories of grammar aim to describe how language is actually used by speakers, while prescriptive theories of grammar aim to prescribe how language should be used. In the context of our language system, a descriptive approach would focus on accurately representing the way language is actually used by all speakers, regardless of their cultural or linguistic background. A prescriptive approach, on the other hand, would aim to impose a specific set of language rules on all speakers, regardless of their individual or cultural differences.
+
+Given the goal of creating a language system that represents universal truths, a descriptive approach to grammar would likely be more appropriate. Such an approach would be more inclusive and reflective of the diversity of human language use, and would be better suited to representing universal truths that are not tied to any particular cultural or linguistic tradition.
+
+---
+
+# Ending reflection
+
+**It seems as though I've confirmed my prior beliefs that creating a language system which is outputs only true statements is not possible.**
+
+**If it were, it would constitute solving the [Entscheidungsproblem](https://en.wikipedia.org/wiki/Entscheidungsproblem) in finite time for any input. Frustratingly, I don't think I have come any closer to a conclusion on how contradictory statements by distinct social or political groups would be represented in such a system.**
+
+**Requests and responses have been edited for brevity; also, h/t Gödel, Chomsky, Church-Turing, Liebniz.... they have been my inputs here.**
