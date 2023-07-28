@@ -1,0 +1,93 @@
+---
+date: "2022-04-06"
+title: "Flight sim hardware"
+category: "blog"
+tags:
+  - hardware
+copy: "Combining hobbyist electronics and aviation"
+image: "fs07.jpeg"
+---
+
+I started this series of projects when I had just begun my journey as a student pilot. To familiarize myself with aircraft systems and running checklists, I wanted to build a realistic simulator on a budget.
+
+Graphics and such are far less important to me than realistic interfaces. Here's what my setup looked like (with X-Plane and Logitech/Saitek controls).
+
+![](fs01.jpeg)
+
+# The switch panel
+
+I built a switch panel which would issue commands to X-Plane by sending keystrokes. I flashed the Arduino Micro board to appear as a generic keyboard, and the `turn on / off` commands for each aircraft system would correspond to a unique key character.
+
+**The final result looks like this:**
+
+![](fs02.jpeg)
+
+I sketched and then 3D-printed a case for the Micro in PLA.
+
+![](fs03.jpeg)
+
+Wiring it all up.
+
+![](fs04.jpeg)
+
+Interrupts were used to detect rising/falling events on the digital input pins. The downside of sending events from the device as keystrokes is that there is no two-way synchronization of state between the real switch and the virtual, so at startup, you'd have to set your virtual switches once to match the state of the real switches.
+
+# The COM/NAV controller
+
+Having built up my confidence somewhat in CAD, I took on a more ambitious project to create a COM/NAV radio controller.
+
+I had learned my lesson about the pitfalls of treating the interface device as a keyboard; and this device would surely need two-way communication to display the active/standby frequencies on the LCD display.
+
+[Code for the controller on GitHub](https://github.com/samwinslow/arduino-hid-examples/blob/main/flightsim/teensy_freq.cpp) (C++).
+
+![](fs05.jpeg)
+
+The component I'm most proud of: a unit for driving two separate rotary encoders from concentric knobs.
+
+![](fs06.jpeg)
+
+Here are all the major internals: the rotary encoder assembly, the Arduino, the 16x2 LCD, and a momentary switch to flip the active/standby frequencies.
+
+![](fs07.jpeg)
+
+I based the dimensions on a real Bendix-King radio panel and designed a special housing for the momentary switch button.
+
+![](fs08.jpeg)
+
+Detail of the switch button mechanism.
+
+![](fs09.gif)
+
+Populating the panel with the knobs and LCD.
+
+![](fs10.jpeg)
+
+# The standalone IoT METAR display
+
+Just for fun, I wanted to build a small unit which would poll the publicly available METAR data for a local airport and display it on a compact screen. Here are the internals, featuring a Raspberry Pi and relays left over from another automation project. The idea was to trigger certain real-world devices based on the weather forecast and time of day.
+
+![](fs11.jpeg)
+
+The OLED display in action.
+
+![](fs12.jpeg)
+
+# The bezeled instrument panel
+
+**As before, here's the final result:**
+
+![](fs13.jpeg)
+
+Progress shots:
+
+![](fs14.jpeg)
+![](fs15.jpeg)
+
+The display is the guts of a Dell monitor driven by a separate Lenovo SFF PC.
+
+![](fs16.jpeg)
+
+Custom printed brackets hold the PC in place from top and bottom with the help of gravity.
+
+![](fs17.jpeg)
+![](fs18.jpeg)
