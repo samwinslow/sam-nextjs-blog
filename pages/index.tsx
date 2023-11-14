@@ -24,15 +24,15 @@ const Index = ({
     <Head>
       <title>{siteTitle}</title>
     </Head>
-    <section className="headingMd center" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
+    <section className="headingMd" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
       <p>
-        Hi, I'm Sam. I am interested in tech for music and creativity.
+        Hi, I'm Sam.
       </p>
       <p>
         Before working as a software engineer, I worked as a designer and marketer. My skills are largely self-taught, and I studied communications at NYU.
       </p>
       <p>
-        In my free time I love working with electronics, reading, and flying airplanes.
+        In my free time I love reading, working with electronics, and flying airplanes.
       </p>
     </section>
     <section>
@@ -58,54 +58,47 @@ const Index = ({
     <section>
       <Heading.Lg>Words</Heading.Lg>
       <div className="row">
-        <div className="col col-4" style={{ paddingBottom: '0.5rem' }}>
-           <img
-            src="/img/bauhaus.jpg"
-            style={{ width: '100%', marginBottom: '1rem' }}
-          />
-          <ColorWrapper>
-            <TagsCloud tags={tags} />
-          </ColorWrapper>
-        </div>
-        <div className="col col-8 col-text">
-          <ColorWrapper>
-            <ul className="list">
-              {allPostsData.map(({ id, date, title, image, tags }) => (
-                <li key={id}>
-                  <Link href={`/post/${id}`}>
-                    <div>
-                      <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
-                        <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
-                          {title}
-                        </Heading.Md>
-                        <Byline date={date} tags={tags} />
+        <ColorWrapper>
+          <TagsCloud tags={tags} />
+          <ul className="list">
+            {allPostsData.map(({ id, date, title, image, tags, copy }) => (
+              <li key={id}>
+                <Link href={`/post/${id}`}>
+                  <div>
+                    <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
+                      <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                        {title}
+                      </Heading.Md>
+                      <Byline date={date} tags={tags} />
+                      <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                        {copy}
                       </div>
                     </div>
-                  </Link>
-                  <ReactTooltip
-                    id={`tooltip-${id}`}
-                    place="top"
-                    type="light"
-                    effect="solid"
-                  >
-                    { image && <img
-                        src={`/img/${image}`}
-                        style={{ width: '12rem' }}
-                      />
-                    }
-                  </ReactTooltip>
-                </li>
-              ))}
-            </ul>
-          </ColorWrapper>
-        </div>
+                  </div>
+                </Link>
+                <ReactTooltip
+                  id={`tooltip-${id}`}
+                  place="top"
+                  type="light"
+                  effect="solid"
+                >
+                  { image && <img
+                      src={`/img/${image}`}
+                      style={{ width: '12rem' }}
+                    />
+                  }
+                </ReactTooltip>
+              </li>
+            ))}
+          </ul>
+        </ColorWrapper>
       </div>
     </section>
     <section>
       
     </section>
     <section>
-      <Heading.Lg>Connections</Heading.Lg>
+      <Heading.Lg>Links</Heading.Lg>
       <ColorWrapper>
         <ul className="list">
           { socialLinks.map(({ site, url, introText }) => (

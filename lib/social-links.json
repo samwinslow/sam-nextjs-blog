@@ -1,18 +1,13 @@
 [
   {
-    "site": "CV",
-    "url": "https://read.cv/sbw",
-    "introText": "resume"
+    "site": "LinkedIn",
+    "url": "https://linkedin.com/in/sambwinslow/",
+    "introText": "résumé"
   },
   {
     "site": "GitHub",
     "url": "https://github.com/samwinslow",
     "introText": "code"
-  },
-  {
-    "site": "Twitter",
-    "url": "https://twitter.com/sambwinslow",
-    "introText": "words"
   },
   {
     "site": "Instagram",

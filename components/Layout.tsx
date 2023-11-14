@@ -1,38 +1,50 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import ColoredLink from './ColoredLink'
-import ColorWrapper from './ColorWrapper'
 import { Heading } from './Heading'
 
 const name = 'Sam Winslow'
 export const siteTitle = name
 
-const Header = ({ home }: { home: boolean }) => (
-  home ? (
-    <header className="center">
-      <Image
-        priority
-        src="/img/profile.jpg"
-        className="borderCircle"
-        height={144}
-        width={144}
-        alt={name}
-      />
-      <Heading.Xxl>
-        <ColorWrapper>
+const headingStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: '1rem',
+}
+
+const Header = ({ home }: { home?: boolean }) => (
+  <header style={{ marginBottom: '2rem' }}>
+    { home ? (
+      <Heading.Xl style={headingStyle}>
+        <Image
+          priority
+          src="/img/profile.jpg"
+          className="borderCircle"
+          height={72}
+          width={72}
+          alt={name}
+        />
+        <ColoredLink href="/">
           {name}
-        </ColorWrapper>
-      </Heading.Xxl>
-    </header>
-  ) : (
-    <header>
-      <Heading.Lg style={{ margin: '1rem 0' }}>
+        </ColoredLink>
+      </Heading.Xl>
+    ) : (
+      <Heading.Lg style={headingStyle}>
+        <Image
+          priority
+          src="/img/profile.jpg"
+          className="borderCircle"
+          height={48}
+          width={48}
+          alt={name}
+        />
         <ColoredLink href="/">
           {name}
         </ColoredLink>
       </Heading.Lg>
-    </header>
-  )
+    )}
+  </header>
 )
 
 const Layout = ({

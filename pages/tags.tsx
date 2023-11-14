@@ -62,7 +62,7 @@ const Tags = ({ tags }: { tags: TagData[] }) => {
 export default Tags
 
 export const TagsCloud = ({ tags }: { tags: TagData[] }) => (
-  <div>
+  <div style={{ marginBottom: '1rem' }}>
     {tags.map(({ id, postCount }, i) => (
       <SlugItem key={i} href={`/tag/${id}`} text={`${id} ${postCount}`} />
     ))}
