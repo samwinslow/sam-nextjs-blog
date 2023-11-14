@@ -70,7 +70,7 @@ const Post = ({
         <div className="mdx-wrapper">{content}</div>
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
       </article>
-      <footer style={{ marginTop: '1em' }}>
+      <footer style={{ marginTop: '2em' }}>
         <div>
           { previous && <span>Previous: <SlugItem text={previous} href={`/post/${previous}`} /></span> }
         </div>
