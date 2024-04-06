@@ -76,18 +76,19 @@ const Index = ({
                     </div>
                   </div>
                 </Link>
-                <ReactTooltip
-                  id={`tooltip-${id}`}
-                  place="top"
-                  type="light"
-                  effect="solid"
-                >
-                  { image && <img
+                { image ? (
+                  <ReactTooltip
+                    id={`tooltip-${id}`}
+                    place="top"
+                    type="light"
+                    effect="solid"
+                  >
+                    <img
                       src={`/img/${image}`}
                       style={{ width: '12rem' }}
                     />
-                  }
-                </ReactTooltip>
+                  </ReactTooltip>
+                ) : null}
               </li>
             ))}
           </ul>
