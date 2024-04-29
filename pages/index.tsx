@@ -37,23 +37,37 @@ const Index = ({
     </section>
     <section>
       <Heading.Lg>Projects</Heading.Lg>
-      <div className="pretty-grid">
-        {hostedProjects.map(({ uri, title, subtitle, desc, image }) => (
-          <div
-            key={uri}
-            style={{
-              backgroundImage: `url(/img/${image})`
-            }}
-          >
-            <ConditionalExternalLink href={uri}>
-              <div className="inner">
-                <h3>{title}</h3>
-                <p>{subtitle}</p>
-              </div>
-            </ConditionalExternalLink>
-          </div>
-        ))}
-      </div>
+      <ColorWrapper>
+        <ul className="list">
+          {hostedProjects.map(({ uri, title, subtitle, image }, i) => (
+            <li key={uri}>
+              <ConditionalExternalLink href={uri}>
+                <div className="list-link-content" data-tip data-for={`tooltip-${i}`}>
+                  <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                    {title}
+                  </Heading.Md>
+                  <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                    {subtitle}
+                  </div>
+                </div>
+              </ConditionalExternalLink>
+              { image ? (
+                <ReactTooltip
+                  id={`tooltip-${i}`}
+                  place="top"
+                  type="light"
+                  effect="solid"
+                >
+                  <img
+                    src={`/img/${image}`}
+                    style={{ width: '12rem' }}
+                  />
+                </ReactTooltip>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </ColorWrapper>
     </section>
     <section>
       <Heading.Lg>Words</Heading.Lg>
