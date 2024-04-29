@@ -29,11 +29,24 @@ const Index = ({
         Hi, I'm Sam.
       </p>
       <p>
-        Before working as a software engineer, I worked as a designer and marketer. My skills are largely self-taught, and I studied communications at NYU.
+        I am a full-stack software engineer and private pilot based in Philly. Prior to working in tech, I studied communications at NYU and held internships in advertising and marketing.
       </p>
       <p>
-        In my free time I love reading, working with electronics, and flying airplanes.
+        I occasionally take on contract work, so reach out if you would be interested in collaborating.
       </p>
+    </section>
+    <section>
+      <div style={{ display: 'flex', gap: 12 }}>
+        { socialLinks.map(({ site, url, introText }) => (
+          <Heading.Md>
+            <div>
+              <Link href={url}>
+                {`${introText} ↗`}
+              </Link>
+            </div>
+          </Heading.Md>
+        ))}
+      </div>
     </section>
     <section>
       <Heading.Lg>Projects</Heading.Lg>
@@ -70,7 +83,7 @@ const Index = ({
       </ColorWrapper>
     </section>
     <section>
-      <Heading.Lg>Words</Heading.Lg>
+      <Heading.Lg>Posts</Heading.Lg>
       <div className="row">
         <ColorWrapper>
           <TagsCloud tags={tags} />
@@ -108,30 +121,6 @@ const Index = ({
           </ul>
         </ColorWrapper>
       </div>
-    </section>
-    <section>
-      
-    </section>
-    <section>
-      <Heading.Lg>Links</Heading.Lg>
-      <ColorWrapper>
-        <ul className="list">
-          { socialLinks.map(({ site, url, introText }) => (
-            <li key={url}>
-              <Heading.Md style={{ display: 'flex', wordBreak: 'break-word' }}>
-                <div style={{ minWidth: '6em', opacity: 0.5 }}>
-                  {introText}:
-                </div>
-                <div>
-                  <Link href={url}>
-                    {url.replace(/(^https?:\/\/)|(\.com)/g, '')}
-                  </Link>
-                </div>
-              </Heading.Md>
-            </li>
-          ))}
-        </ul>
-      </ColorWrapper>
     </section>
   </Layout>
 )

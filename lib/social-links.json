@@ -2,16 +2,11 @@
   {
     "site": "LinkedIn",
     "url": "https://linkedin.com/in/sambwinslow/",
-    "introText": "résumé"
+    "introText": "linkedin"
   },
   {
     "site": "GitHub",
     "url": "https://github.com/samwinslow",
-    "introText": "code"
-  },
-  {
-    "site": "Instagram",
-    "url": "https://instagram.com/samscalligraphy",
-    "introText": "shapes"
+    "introText": "github"
   }
 ]
