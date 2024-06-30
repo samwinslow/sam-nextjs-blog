@@ -1,5 +1,12 @@
 [
   {
+    "uri": "https://patchbay.xyz",
+    "title": "Patchbay",
+    "subtitle": "Suite of tools for music managers, publishers, and attorneys",
+    "desc": "React, Python, Postgres",
+    "image": "patchbay-lg.jpg"
+  },
+  {
     "uri": "/post/seven-invites",
     "title": "Seven Invites",
     "subtitle": "Party-planning app for iOS (over 30k users at its peak)",
@@ -12,12 +19,5 @@
     "subtitle": "Visualizing public-domain data which interests me as a pilot",
     "desc": "Harp.gl and public domain data",
     "image": "faa-airspace.gif"
-  },
-  {
-    "uri": "/post/tunestack",
-    "title": "Tunestack",
-    "subtitle": "Social networking app for music lovers (COVID project, archived)",
-    "desc": "React Native, AWS, Serverless Framework",
-    "image": "tunestack-3screens.jpg"
   }
 ]
