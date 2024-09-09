@@ -8,7 +8,6 @@ import { Byline } from '../../components/Byline'
 import { PostData } from '../../lib/types'
 import ColorWrapper from '../../components/ColorWrapper'
 import Link from 'next/link'
-import ReactTooltip from 'react-tooltip'
 import { Heading } from '../../components/Heading'
 
 const Tag = ({
@@ -51,7 +50,7 @@ const Tag = ({
                         style={{ width: '100%', cursor: 'pointer' }}
                       />
                     }
-                    <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
+                    <div className="list-link-content">
                       <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
                         {title}
                       </Heading.Md>
@@ -62,20 +61,6 @@ const Tag = ({
                     </div>
                   </div>
                 </Link>
-                { index > 0 &&
-                  <ReactTooltip
-                    id={`tooltip-${id}`}
-                    place={index % 2 === 0 ? "left" : "right"}
-                    type="light"
-                    effect="solid"
-                  >
-                    { image && <img
-                        src={`/img/${image}`}
-                        style={{ width: '12rem' }}
-                      />
-                    }
-                  </ReactTooltip>
-                }
               </li>
             ))}
           </ul>

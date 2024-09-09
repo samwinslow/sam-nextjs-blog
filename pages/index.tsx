@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import ReactTooltip from 'react-tooltip'
 import Layout, { siteTitle } from '../components/Layout'
 import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
 import Link from 'next/link'
@@ -55,7 +54,7 @@ const Index = ({
           {hostedProjects.map(({ uri, title, subtitle, image }, i) => (
             <li key={uri}>
               <ConditionalExternalLink href={uri}>
-                <div className="list-link-content" data-tip data-for={`tooltip-${i}`}>
+                <div className="list-link-content">
                   <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
                   </Heading.Md>
@@ -64,19 +63,6 @@ const Index = ({
                   </div>
                 </div>
               </ConditionalExternalLink>
-              { image ? (
-                <ReactTooltip
-                  id={`tooltip-${i}`}
-                  place="top"
-                  type="light"
-                  effect="solid"
-                >
-                  <img
-                    src={`/img/${image}`}
-                    style={{ width: '12rem' }}
-                  />
-                </ReactTooltip>
-              ) : null}
             </li>
           ))}
         </ul>
@@ -92,7 +78,7 @@ const Index = ({
               <li key={id}>
                 <Link href={`/post/${id}`}>
                   <div>
-                    <div className="list-link-content" data-tip data-for={`tooltip-${id}`}>
+                    <div className="list-link-content">
                       <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
                         {title}
                       </Heading.Md>
@@ -103,19 +89,6 @@ const Index = ({
                     </div>
                   </div>
                 </Link>
-                { image ? (
-                  <ReactTooltip
-                    id={`tooltip-${id}`}
-                    place="top"
-                    type="light"
-                    effect="solid"
-                  >
-                    <img
-                      src={`/img/${image}`}
-                      style={{ width: '12rem' }}
-                    />
-                  </ReactTooltip>
-                ) : null}
               </li>
             ))}
           </ul>
