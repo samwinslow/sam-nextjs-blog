@@ -1,4 +1,4 @@
-import NextImage, { ImageProps } from 'next/image'
+import NextImage, { ImageProps } from 'next/legacy/image'
 
 const Image = ({ src, ...props }: ImageProps) => (
   <div style={{ margin: '0.618rem 0' }} className="next-image-override">

@@ -7,7 +7,7 @@ export const Byline = ({ date, tags, expanded = false }: { date: PostMetadata['d
     <Date dateString={date} />
     { tags && (
       <span style={{ paddingLeft: '0.5em' }}>
-        {tags.map((tag, i) => <SlugItem key={i} href={`/tag/${tag}`} text={tag} />)}
+        {tags.map((tag, i) => <SlugItem key={i} text={tag} />)}
       </span>
     )}
   </div>
