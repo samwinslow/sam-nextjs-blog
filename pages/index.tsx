@@ -32,8 +32,8 @@ const Index = ({
     </section>
     <section>
       <div style={{ display: 'flex', gap: 12 }}>
-        { socialLinks.map(({ site, url, introText }) => (
-          <Heading.Md>
+        { socialLinks.map(({ url, introText }) => (
+          <Heading.Md key={url}>
             <div>
               <Link href={url}>
                 {`${introText} ↗`}
@@ -50,14 +50,14 @@ const Index = ({
           {hostedProjects.map(({ uri, title, subtitle, image }, i) => (
             <li key={uri}>
               <ConditionalExternalLink href={uri}>
-                <div className="list-link-content">
+                <span className="list-link-content">
                   <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
                   </Heading.Md>
-                  <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                  <span className="list-subtitle">
                     {subtitle}
-                  </div>
-                </div>
+                  </span>
+                </span>
               </ConditionalExternalLink>
             </li>
           ))}
@@ -73,17 +73,15 @@ const Index = ({
             {allPostsData.map(({ id, date, title, image, tags, copy }) => (
               <li key={id}>
                 <Link href={`/post/${id}`}>
-                  <div>
-                    <div className="list-link-content">
-                      <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
-                        {title}
-                      </Heading.Md>
-                      <Byline date={date} tags={tags} />
-                      <div style={{ opacity: 0.5, color: 'var(--text)' }}>
-                        {copy}
-                      </div>
-                    </div>
-                  </div>
+                  <span className="list-link-content">
+                    <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
+                      {title}
+                    </Heading.Md>
+                    <Byline date={date} tags={tags} />
+                    <span className="list-subtitle">
+                      {copy}
+                    </span>
+                  </span>
                 </Link>
               </li>
             ))}
