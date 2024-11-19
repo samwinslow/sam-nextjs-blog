@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../components/Layout'
+import PageLayout from '../components/Layout'
 import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
 import { TagData } from '../lib/types'
 import { GetStaticProps } from 'next'
@@ -35,10 +35,9 @@ const TagsList = ({ tags }: { tags: TagData[] }) => (
 
 const Tags = ({ tags }: { tags: TagData[] }) => {
   return (
-    <Layout>
-      <Head>
-        <title>All Tags • Sam Winslow</title>
-      </Head>
+    <PageLayout headProps={{
+      title: 'All Tags • Sam Winslow'
+    }}>
       <section>
         <Heading.Lg>
           Tags{' '}
@@ -55,7 +54,7 @@ const Tags = ({ tags }: { tags: TagData[] }) => {
           <TagsList tags={tags} />
         </ColorWrapper>
       </section>
-    </Layout>
+    </PageLayout>
   )
 }
 

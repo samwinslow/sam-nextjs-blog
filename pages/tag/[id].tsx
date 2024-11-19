@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../components/Layout'
+import PageLayout from '../../components/Layout'
 import { getPostsByTag } from '../../lib/posts'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import tags from '../../lib/tags.json'
@@ -18,10 +18,9 @@ const Tag = ({
   posts: PostData[]
 }) => {
   return (
-    <Layout>
-      <Head>
-        <title>Tag: {tag} • Sam Winslow</title>
-      </Head>
+    <PageLayout headProps={{
+      title: 'Tag: {tag} • Sam Winslow'
+    }}>
       <section>
         <p>
           <Link href="/tags">
@@ -66,7 +65,7 @@ const Tag = ({
           </ul>
         </ColorWrapper>
       </section>
-    </Layout>
+    </PageLayout>
   )
 }
 

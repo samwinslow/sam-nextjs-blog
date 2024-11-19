@@ -1,5 +1,4 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/Layout'
+import PageLayout from '../components/Layout'
 import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
@@ -19,10 +18,7 @@ const Index = ({
   allPostsData: PostMetadata[],
   tags: TagData[],
 }) => (
-  <Layout home>
-    <Head>
-      <title>{siteTitle}</title>
-    </Head>
+  <PageLayout isHome>
     <section className="headingMd" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
       <p>
         Hi, I'm Sam.
@@ -95,7 +91,7 @@ const Index = ({
         </ColorWrapper>
       </div>
     </section>
-  </Layout>
+  </PageLayout>
 )
 
 export default Index
