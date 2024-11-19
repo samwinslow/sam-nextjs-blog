@@ -1,14 +1,13 @@
-import Head from 'next/head'
-import Layout from '../../components/Layout'
+import PageLayout from '../../components/Layout'
 import { getPostsByTag } from '../../lib/posts'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import tags from '../../lib/tags.json'
 import pluralize from 'pluralize'
-import { Byline } from '../../components/Byline'
 import { PostData } from '../../lib/types'
 import ColorWrapper from '../../components/ColorWrapper'
 import Link from 'next/link'
 import { Heading } from '../../components/Heading'
+import PostList from '../../components/PostList'
 
 const Tag = ({
   tag,
@@ -18,10 +17,9 @@ const Tag = ({
   posts: PostData[]
 }) => {
   return (
-    <Layout>
-      <Head>
-        <title>Tag: {tag} • Sam Winslow</title>
-      </Head>
+    <PageLayout headProps={{
+      title: 'Tag: {tag} • Sam Winslow'
+    }}>
       <section>
         <p>
           <Link href="/tags">
@@ -40,33 +38,10 @@ const Tag = ({
           </span>
         </Heading.Lg>
         <ColorWrapper>
-          <ul className="list">
-            {posts.map(({ id, date, title, image, copy, tags }, index) => (
-              <li key={id}>
-                <Link href={`/post/${id}`}>
-                  <div>
-                    { image && index === 0 && <img
-                        src={`/img/${image}`}
-                        style={{ width: '100%', cursor: 'pointer' }}
-                      />
-                    }
-                    <div className="list-link-content">
-                      <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
-                        {title}
-                      </Heading.Md>
-                      <Byline date={date} tags={tags} />
-                      <div style={{ opacity: 0.5, color: 'var(--text)' }}>
-                        {copy}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <PostList posts={posts} />
         </ColorWrapper>
       </section>
-    </Layout>
+    </PageLayout>
   )
 }
 

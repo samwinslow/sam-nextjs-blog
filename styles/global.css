@@ -54,11 +54,8 @@ a:hover {
   text-decoration: underline;
 }
 
-.list-link-content h3 {
-  font-weight: 500;
-}
-
 .list-link-content {
+  display: block;
   background-color: transparent;
   cursor: pointer;
   padding: 0.5em;
@@ -69,6 +66,16 @@ a:hover {
 .list-link-content:hover {
   background-color: var(--bg-light);
   border-radius: 0.5em;
+}
+
+.list-link-content h3 {
+  font-weight: 500;
+}
+
+.list-link-content .list-subtitle {
+  display: block;
+  opacity: 0.5;
+  color: var(--text);
 }
 
 img {

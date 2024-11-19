@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../components/Layout'
+import PageLayout from '../../components/Layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -41,6 +41,7 @@ const Post = ({
   postData: {
     date,
     title,
+    copy,
     parents,
     children,
     tags,
@@ -54,15 +55,14 @@ const Post = ({
 }) => {
   const content = hydrate(source, { components: MDXComponents })
   const hasRelatedNodes = parents?.length || children?.length
+  const imgRel = encodeURIComponent('/img/'+ image)
+
   return (
-    <Layout>
-      <Head>
-        <title>{title}</title>
-        { image && <meta
-          property="og:image"
-          content={`https://samwinslow.net/_next/image?${encodeURIComponent('/img/'+ image)}&w=1200&q=75`}
-        />}
-      </Head>
+    <PageLayout headProps={{
+      title,
+      description: copy,
+      ogImage: `https://samwinslow.net/_next/image?${imgRel}&w=1200&q=75`
+    }}>
       <article>
         <Heading.Xl>{title}</Heading.Xl>
         <Byline date={date} tags={tags} expanded />
@@ -78,7 +78,7 @@ const Post = ({
           { next && <span>Next: <SlugItem text={next} href={`/post/${next}`} /></span> }
         </div>
       </footer>
-    </Layout>
+    </PageLayout>
   )
 }
 

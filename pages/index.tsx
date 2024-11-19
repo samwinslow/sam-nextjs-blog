@@ -1,5 +1,4 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/Layout'
+import PageLayout from '../components/Layout'
 import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
@@ -7,10 +6,10 @@ import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
 import hostedProjects from '../lib/hosted-projects.json'
 import { PostMetadata, TagData } from '../lib/types'
-import { Byline } from '../components/Byline'
 import { Heading } from '../components/Heading'
 import { TagsCloud } from './tags'
 import ConditionalExternalLink from '../components/ConditionalExternalLink'
+import PostList from '../components/PostList'
 
 const Index = ({
   allPostsData,
@@ -19,10 +18,7 @@ const Index = ({
   allPostsData: PostMetadata[],
   tags: TagData[],
 }) => (
-  <Layout home>
-    <Head>
-      <title>{siteTitle}</title>
-    </Head>
+  <PageLayout isHome>
     <section className="headingMd" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
       <p>
         Hi, I'm Sam.
@@ -36,8 +32,8 @@ const Index = ({
     </section>
     <section>
       <div style={{ display: 'flex', gap: 12 }}>
-        { socialLinks.map(({ site, url, introText }) => (
-          <Heading.Md>
+        { socialLinks.map(({ url, introText }) => (
+          <Heading.Md key={url}>
             <div>
               <Link href={url}>
                 {`${introText} ↗`}
@@ -54,14 +50,14 @@ const Index = ({
           {hostedProjects.map(({ uri, title, subtitle, image }, i) => (
             <li key={uri}>
               <ConditionalExternalLink href={uri}>
-                <div className="list-link-content">
+                <span className="list-link-content">
                   <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
                     {title}
                   </Heading.Md>
-                  <div style={{ opacity: 0.5, color: 'var(--text)' }}>
+                  <span className="list-subtitle">
                     {subtitle}
-                  </div>
-                </div>
+                  </span>
+                </span>
               </ConditionalExternalLink>
             </li>
           ))}
@@ -73,29 +69,11 @@ const Index = ({
       <div className="row">
         <ColorWrapper>
           <TagsCloud tags={tags} />
-          <ul className="list">
-            {allPostsData.map(({ id, date, title, image, tags, copy }) => (
-              <li key={id}>
-                <Link href={`/post/${id}`}>
-                  <div>
-                    <div className="list-link-content">
-                      <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
-                        {title}
-                      </Heading.Md>
-                      <Byline date={date} tags={tags} />
-                      <div style={{ opacity: 0.5, color: 'var(--text)' }}>
-                        {copy}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <PostList posts={allPostsData} />
         </ColorWrapper>
       </div>
     </section>
-  </Layout>
+  </PageLayout>
 )
 
 export default Index
