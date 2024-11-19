@@ -6,10 +6,10 @@ import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
 import hostedProjects from '../lib/hosted-projects.json'
 import { PostMetadata, TagData } from '../lib/types'
-import { Byline } from '../components/Byline'
 import { Heading } from '../components/Heading'
 import { TagsCloud } from './tags'
 import ConditionalExternalLink from '../components/ConditionalExternalLink'
+import PostList from '../components/PostList'
 
 const Index = ({
   allPostsData,
@@ -69,23 +69,7 @@ const Index = ({
       <div className="row">
         <ColorWrapper>
           <TagsCloud tags={tags} />
-          <ul className="list">
-            {allPostsData.map(({ id, date, title, image, tags, copy }) => (
-              <li key={id}>
-                <Link href={`/post/${id}`}>
-                  <span className="list-link-content">
-                    <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
-                      {title}
-                    </Heading.Md>
-                    <Byline date={date} tags={tags} />
-                    <span className="list-subtitle">
-                      {copy}
-                    </span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <PostList posts={allPostsData} />
         </ColorWrapper>
       </div>
     </section>
