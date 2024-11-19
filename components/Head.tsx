@@ -11,7 +11,7 @@ export interface HeadProps {
 const Head = ({
   title = siteTitle,
   description = headline,
-  ogImage,
+  ogImage = ogImageURI,
   children = null,
 }: HeadProps) => (
   <NextHead>

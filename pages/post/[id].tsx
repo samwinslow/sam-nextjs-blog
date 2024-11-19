@@ -61,7 +61,7 @@ const Post = ({
     <PageLayout headProps={{
       title,
       description: copy,
-      ogImage: `https://samwinslow.net/_next/image?${imgRel}&w=1200&q=75`
+      ogImage: image ? `https://samwinslow.net/_next/image?url=${imgRel}&w=1200&q=75` : undefined
     }}>
       <article>
         <Heading.Xl>{title}</Heading.Xl>
