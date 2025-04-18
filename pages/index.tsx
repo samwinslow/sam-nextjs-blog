@@ -1,14 +1,13 @@
 import PageLayout from '../components/Layout'
 import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
-import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import socialLinks from '../lib/social-links.json'
-import hostedProjects from '../lib/hosted-projects.json'
 import { PostMetadata, TagData } from '../lib/types'
 import { Heading } from '../components/Heading'
 import { TagsCloud } from './tags'
 import ConditionalExternalLink from '../components/ConditionalExternalLink'
 import PostList from '../components/PostList'
+import { SlugItem } from '../components/SlugItem'
 
 const Index = ({
   allPostsData,
@@ -32,13 +31,11 @@ const Index = ({
     <section>
       <Heading.Lg>Contact</Heading.Lg>
       <div className="flex-col">
-        <ul className="list">
+        <ul className="list" style={{ display: 'flex' }}>
           { socialLinks.map(({ url, site }) => (
             <li key={url}>
               <ConditionalExternalLink href={url}>
-                <span className="list-link-content">
-                  {site}
-                </span>
+                <SlugItem text={site} />
               </ConditionalExternalLink>
             </li>
           ))}
