@@ -2,11 +2,11 @@
   --base-font-family: "Palatino", "Hoefler Text", "Book Antiqua", "Cambria", "Times New Roman", "Times", serif;
   --head-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
-  --text: #444;
+  --text: #000;
   --muted: #bbb;
   --tree-nav-background: transparent;
   --light: rgba(0,10,20,0.15);
-  --link: hsl(160, 80%, 40%);
+  --link: hsl(180, 80%, 32%);
   --bg-light: rgba(0,10,20,0.05);
 }
 
@@ -30,11 +30,15 @@ section {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--head-font-family);
+  line-height: 1;
 }
 
-h1, h2 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+h1 {
+  font-weight: 500;
+}
+
+h2 {
+  font-weight: 500;
 }
 
 h3 {
@@ -47,7 +51,7 @@ p {
 
 a {
   color: var(--link);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
@@ -65,7 +69,7 @@ a:hover {
 
 .list-link-content:hover {
   background-color: var(--bg-light);
-  border-radius: 0.5em;
+  border-radius: 0.4em;
 }
 
 .list-link-content h3 {
@@ -76,12 +80,13 @@ a:hover {
   display: block;
   opacity: 0.5;
   color: var(--text);
+  line-height: 1.2;
 }
 
 img {
   max-width: 100%;
   display: block;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
 }
 
 img.responsive {

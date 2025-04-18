@@ -4,7 +4,6 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import tags from '../../lib/tags.json'
 import pluralize from 'pluralize'
 import { PostData } from '../../lib/types'
-import ColorWrapper from '../../components/ColorWrapper'
 import Link from 'next/link'
 import { Heading } from '../../components/Heading'
 import PostList from '../../components/PostList'
@@ -37,9 +36,7 @@ const Tag = ({
             {pluralize('posts', posts.length, true)}
           </span>
         </Heading.Lg>
-        <ColorWrapper>
-          <PostList posts={posts} />
-        </ColorWrapper>
+        <PostList posts={posts} />
       </section>
     </PageLayout>
   )

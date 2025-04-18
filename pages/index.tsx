@@ -1,15 +1,13 @@
 import PageLayout from '../components/Layout'
 import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
-import Link from 'next/link'
 import { GetStaticProps } from 'next'
-import ColorWrapper from '../components/ColorWrapper'
 import socialLinks from '../lib/social-links.json'
-import hostedProjects from '../lib/hosted-projects.json'
 import { PostMetadata, TagData } from '../lib/types'
 import { Heading } from '../components/Heading'
 import { TagsCloud } from './tags'
 import ConditionalExternalLink from '../components/ConditionalExternalLink'
 import PostList from '../components/PostList'
+import { SlugItem } from '../components/SlugItem'
 
 const Index = ({
   allPostsData,
@@ -31,46 +29,47 @@ const Index = ({
       </p>
     </section>
     <section>
-      <div style={{ display: 'flex', gap: 12 }}>
-        { socialLinks.map(({ url, introText }) => (
-          <Heading.Md key={url}>
-            <div>
-              <Link href={url}>
-                {`${introText} ↗`}
-              </Link>
-            </div>
-          </Heading.Md>
-        ))}
-      </div>
-    </section>
-    <section>
-      <Heading.Lg>Projects</Heading.Lg>
-      <ColorWrapper>
-        <ul className="list">
-          {hostedProjects.map(({ uri, title, subtitle, image }, i) => (
-            <li key={uri}>
-              <ConditionalExternalLink href={uri}>
-                <span className="list-link-content">
-                  <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
-                    {title}
-                  </Heading.Md>
-                  <span className="list-subtitle">
-                    {subtitle}
-                  </span>
-                </span>
+      <Heading.Lg>Contact</Heading.Lg>
+      <div className="flex-col">
+        <ul className="list" style={{ display: 'flex' }}>
+          { socialLinks.map(({ url, site }) => (
+            <li key={url}>
+              <ConditionalExternalLink href={url}>
+                <SlugItem text={site} />
               </ConditionalExternalLink>
             </li>
           ))}
         </ul>
-      </ColorWrapper>
+      </div>
     </section>
+    {/* <section>
+      <Heading.Lg>Projects</Heading.Lg>
+      <ul className="list">
+        {hostedProjects.map(({ uri, title, subtitle, image }, i) => (
+          <li key={uri}>
+            <ConditionalExternalLink href={uri}>
+              <span className="list-link-content">
+                <Heading.Md style={{
+                  display: 'inline-block',
+                  marginRight: '0.5em',
+                  color: 'var(--text)',
+                }}>
+                  {title}
+                </Heading.Md>
+                <span className="list-subtitle" style={{ textDecoration: 'none' }}>
+                  {subtitle}
+                </span>
+              </span>
+            </ConditionalExternalLink>
+          </li>
+        ))}
+      </ul>
+    </section> */}
     <section>
       <Heading.Lg>Posts</Heading.Lg>
-      <div className="row">
-        <ColorWrapper>
-          <TagsCloud tags={tags} />
-          <PostList posts={allPostsData} />
-        </ColorWrapper>
+      <div className="flex-col">
+        <TagsCloud tags={tags} />
+        <PostList posts={allPostsData} />
       </div>
     </section>
   </PageLayout>
