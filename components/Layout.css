@@ -12,9 +12,9 @@
   margin: 3rem 0 0;
 }
 
-.row {
+.flex-col {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .col {

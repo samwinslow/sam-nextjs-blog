@@ -6,6 +6,7 @@ export const SlugItem = ({ href, text }: { href?: string, text: string | React.R
     { href ? (
       <Link
         href={href}
+        style={{ textDecoration: 'none' }}
       >
         {text}
       </Link>

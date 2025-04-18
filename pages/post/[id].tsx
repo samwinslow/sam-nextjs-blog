@@ -72,10 +72,10 @@ const Post = ({
       </article>
       <footer style={{ marginTop: '2em' }}>
         <div>
-          { previous && <span>Previous: <SlugItem text={previous} href={`/post/${previous}`} /></span> }
+          { previous && <span>Previous post: <SlugItem text={previous} href={`/post/${previous}`} /></span> }
         </div>
         <div>
-          { next && <span>Next: <SlugItem text={next} href={`/post/${next}`} /></span> }
+          { next && <span>Next post: <SlugItem text={next} href={`/post/${next}`} /></span> }
         </div>
       </footer>
     </PageLayout>

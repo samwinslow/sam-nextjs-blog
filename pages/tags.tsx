@@ -1,9 +1,7 @@
-import Head from 'next/head'
 import PageLayout from '../components/Layout'
 import { getSortedPostsData, getTagsFromPosts } from '../lib/posts'
 import { TagData } from '../lib/types'
 import { GetStaticProps } from 'next'
-import ColorWrapper from '../components/ColorWrapper'
 import Link from 'next/link'
 import { Heading } from '../components/Heading'
 import { SlugItem } from '../components/SlugItem'
@@ -50,9 +48,7 @@ const Tags = ({ tags }: { tags: TagData[] }) => {
             {tags.length}
           </span>
         </Heading.Lg>
-        <ColorWrapper>
-          <TagsList tags={tags} />
-        </ColorWrapper>
+        <TagsList tags={tags} />
       </section>
     </PageLayout>
   )

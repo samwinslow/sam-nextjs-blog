@@ -7,7 +7,7 @@ const PostList = ({ posts }: { posts: PostMetadata[] }) => (
   <ul className="list">
     {posts.map(({ id, date, title, image, tags, copy }) => (
       <li key={id}>
-        <Link href={`/post/${id}`}>
+        <Link href={`/post/${id}`} style={{ textDecoration: 'none', color: 'var(--text)' }}>
           <span className="list-link-content">
             <Heading.Md style={{ display: 'inline-block', marginRight: '0.5em' }}>
               {title}

@@ -1,12 +1,12 @@
 :root {
-  --base-font-family: "Palatino", "Hoefler Text", "Book Antiqua", "Cambria", "Times New Roman", "Times", serif;
+  --base-font-family: "Times", "Times New Roman", serif;
   --head-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
-  --text: #444;
+  --text: #000;
   --muted: #bbb;
   --tree-nav-background: transparent;
   --light: rgba(0,10,20,0.15);
-  --link: hsl(160, 80%, 40%);
+  --link: hsl(180, 80%, 32%);
   --bg-light: rgba(0,10,20,0.05);
 }
 
@@ -20,7 +20,7 @@ body {
   margin: 0;
   font-family: var(--base-font-family);
   line-height: 1.618;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text);
 }
 
@@ -30,11 +30,17 @@ section {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--head-font-family);
+  line-height: 1;
 }
 
-h1, h2 {
+h1 {
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+h2 {
+  font-weight: 500;
+  letter-spacing: 0.03em;
 }
 
 h3 {
@@ -47,7 +53,7 @@ p {
 
 a {
   color: var(--link);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {

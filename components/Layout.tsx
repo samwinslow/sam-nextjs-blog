@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import ColoredLink from './ColoredLink'
 import { Heading } from './Heading'
 import { copyrightHolder, siteTitle } from '../lib/constants'
 import Head, { HeadProps } from './Head'
+import Link from 'next/link'
 
 const headingStyle: React.CSSProperties = {
   display: 'flex',
@@ -18,28 +18,26 @@ const Header = ({ home }: { home?: boolean }) => (
         <Image
           priority
           src="/img/profile.jpg"
-          className="borderCircle"
           height={72}
           width={72}
           alt={siteTitle}
         />
-        <ColoredLink href="/">
+        <Link href="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>
           {siteTitle}
-        </ColoredLink>
+        </Link>
       </Heading.Xl>
     ) : (
       <Heading.Lg style={headingStyle}>
         <Image
           priority
           src="/img/profile.jpg"
-          className="borderCircle"
           height={48}
           width={48}
           alt={siteTitle}
         />
-        <ColoredLink href="/">
+        <Link href="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>
           {siteTitle}
-        </ColoredLink>
+        </Link>
       </Heading.Lg>
     )}
   </header>
