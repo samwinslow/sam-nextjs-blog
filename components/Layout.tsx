@@ -21,6 +21,7 @@ const Header = ({ home }: { home?: boolean }) => (
           height={72}
           width={72}
           alt={siteTitle}
+          className="borderCircle"
         />
         <Link href="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>
           {siteTitle}
@@ -34,6 +35,7 @@ const Header = ({ home }: { home?: boolean }) => (
           height={48}
           width={48}
           alt={siteTitle}
+          className="borderCircle"
         />
         <Link href="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>
           {siteTitle}

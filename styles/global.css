@@ -1,5 +1,5 @@
 :root {
-  --base-font-family: "Times", "Times New Roman", serif;
+  --base-font-family: "Palatino", "Hoefler Text", "Book Antiqua", "Cambria", "Times New Roman", "Times", serif;
   --head-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono-font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
   --text: #000;
@@ -20,7 +20,7 @@ body {
   margin: 0;
   font-family: var(--base-font-family);
   line-height: 1.618;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text);
 }
 
@@ -34,13 +34,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 500;
 }
 
 h2 {
   font-weight: 500;
-  letter-spacing: 0.03em;
 }
 
 h3 {
@@ -71,7 +69,7 @@ a:hover {
 
 .list-link-content:hover {
   background-color: var(--bg-light);
-  border-radius: 0.5em;
+  border-radius: 0.4em;
 }
 
 .list-link-content h3 {
@@ -82,12 +80,13 @@ a:hover {
   display: block;
   opacity: 0.5;
   color: var(--text);
+  line-height: 1.2;
 }
 
 img {
   max-width: 100%;
   display: block;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
 }
 
 img.responsive {
