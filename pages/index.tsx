@@ -42,6 +42,17 @@ const Index = ({
         </ul>
       </div>
     </section>
+    <section>
+      <Heading.Lg>Work</Heading.Lg>
+      <p>
+          Software Engineer at{' '}
+          <a href="https://getflycore.com/" target="_blank" rel="noopener noreferrer">Flycore</a>,{' '}
+          prev.{' '}
+          <a href="https://www.patchbay.xyz/" target="_blank" rel="noopener noreferrer">Patchbay</a>,{' '}
+          <a href="https://www.linkedin.com/company/thesevenapp/" target="_blank" rel="noopener noreferrer">Seven</a>,{' '}
+          <a href="https://posthog.com/" target="_blank" rel="noopener noreferrer">PostHog</a> (YC W20).
+      </p>
+    </section>
     {/* <section>
       <Heading.Lg>Projects</Heading.Lg>
       <ul className="list">
@@ -66,7 +77,7 @@ const Index = ({
       </ul>
     </section> */}
     <section>
-      <Heading.Lg>Posts</Heading.Lg>
+      <Heading.Lg>Writing</Heading.Lg>
       <div className="flex-col">
         <TagsCloud tags={tags} />
         <PostList posts={allPostsData} />
