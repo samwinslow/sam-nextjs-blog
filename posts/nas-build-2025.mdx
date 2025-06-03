@@ -10,7 +10,7 @@ image: "nas3.jpeg"
 
 ## Motivation
 
-I’ve had a Synology DS218 NAS for about 7 years, and it hasn’t let me down once, but I found myself running out of space on a pair of mirrored 2TB drives. It has only 2 drive bays; upgrade options looked pretty limited unless I were to buy bigger drives and let the old ones sit on the shelf.
+I’ve had a Synology DS218 <abbr title="Network Attached Storage device">NAS</abbr> for about 7 years, and it hasn’t let me down once, but I found myself running out of space on a pair of mirrored 2TB drives. It has only 2 drive bays; upgrade options looked pretty limited unless I were to buy bigger drives and let the old ones sit on the shelf.
 
 I am averse to creating e-waste if it can be avoided, and I have a few external drives from my graphic design/video production days laying around. Could I reuse those? Looks like I could attach a USB drive to the Synology, but won’t be able to do any redundancy/parity on it.
 
@@ -33,7 +33,7 @@ So if I could find a cheap, low-power motherboard/CPU combination as well as a r
 - Drives $0, all reused
     - 2x WD Blue WD20EZRZ 2TB drives (3.5” SATA) from existing NAS
     - 1x LaCie 2TB drive (2.5” SATA), shucked from its USB enclosure
-    - 1x WD My Passport 250GB drive, which is ancient and unfortunately not a removable SATA drive + USB adapter, but rather has the USB logic on the motherboard. Mounted inside the case with the on-board USB2.0 port. Used for cold storage/secondary backup.
+    - 1x WD My Passport 250GB drive, which is ancient and unfortunately not a removable SATA drive + USB adapter, but rather has the USB logic on the mainboard. Mounted inside the case using the interior USB2.0 port. Used for cold storage/secondary backup.
 - Power supply $0, reused
 
 Total: $327
@@ -101,13 +101,13 @@ _The NAS in its new home._
 
 ## Useful resources
 
-- [Michael Lynch’s NAS build](https://mtlynch.io/budget-nas/), he followed a similar path in outgrowing Synology.
+- [Michael Lynch’s NAS build](https://mtlynch.io/budget-nas/): he followed a similar path in outgrowing Synology.
 - How do you know if your drive is CMR or SMR? See [this list](https://nascompares.com/answer/list-of-wd-cmr-and-smr-hard-drives-hdd/).
 - [RAIDZ space calculator](https://www.raidz-calculator.com/)
 - Use `rsync` to copy files, run it in the background, disconnect it from the current TTY session and write stdout/stderr to a file:
     - `nohup rsync -avh /path/to/src/ /path/to/dest/ > rsync.log 2>&1 < /dev/null & disown`
 
-## Future directions
+## Future plans
 
 - [friendly_neighbor](https://danielpgross.github.io/friendly_neighbor/howto-sleep-wake-on-demand): Lightweight service that wakes the NAS from a suspended state on *any* network traffic, not just WOL magic packets.
     - I have another machine that runs 24/7, serving [PiHole](https://pi-hole.net/) (DNS) and [Unifi Network Server](https://ui.com/download/releases/network-server), which could do this too.
