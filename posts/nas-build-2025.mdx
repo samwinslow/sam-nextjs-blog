@@ -1,0 +1,121 @@
+---
+date: "2025-06-03"
+title: "Building a NAS on a razor-thin budget"
+category: "blog"
+tags:
+  - hardware
+copy: "Why let perfectly good drives go to waste?"
+image: "nas3.jpeg"
+---
+
+## Motivation
+
+I’ve had a Synology DS218 NAS for about 7 years, and it hasn’t let me down once, but I found myself running out of space on a pair of mirrored 2TB drives. It has only 2 drive bays; upgrade options looked pretty limited unless I were to buy bigger drives and let the old ones sit on the shelf.
+
+I am averse to creating e-waste if it can be avoided, and I have a few external drives from my graphic design/video production days laying around. Could I reuse those? Looks like I could attach a USB drive to the Synology, but won’t be able to do any redundancy/parity on it.
+
+It would also be nice to have another device to tinker with and run some containers on, such as Postgres, the GitHub Actions runner, or scripts to pull backups from other sources.
+
+So if I could find a cheap, low-power motherboard/CPU combination as well as a rack-mounted case to keep the device out of sight and out of mind in my short-depth 9U networking cabinet, building from scratch might make sense.
+
+![The components of a budget NAS.](nas0.jpeg)
+
+## Hardware
+
+- BKHD Industrial Motherboard $179 [amazon](https://www.amazon.com/dp/B0DVZKX6ST)
+    - Intel N150, 6x SATA, 2x M.2 NVMe/NGFF, 1x DDR5 SODIMM, 1x PCIe x1
+    - Specs: [bkipc](https://www.bkipc.com/en/NAS.html)
+- 2U MicroATX/Mini ITX case $69 [amazon](https://www.amazon.com/gp/product/B0D41ZJH3D)
+    - Front interface is actually USB 3.0, which is incompatible with the motherboard. Could add a PCIe card with headers for this, but will hold off for now.
+    - Fans are 2-wire DC, not PWM.
+- Patriot 16GB DDR5 SODIMM $37 [amazon](https://www.amazon.com/gp/product/B0BQMCMWQL)
+- Kingston 500GB M.2 NVMe  PCIe Gen 4x4 $42 [amazon](https://www.amazon.com/dp/B0DBR9RZLV)
+- Drives $0, all reused
+    - 2x WD Blue WD20EZRZ 2TB drives (3.5” SATA) from existing NAS
+    - 1x LaCie 2TB drive (2.5” SATA), shucked from its USB enclosure
+    - 1x WD My Passport 250GB drive, which is ancient and unfortunately not a removable SATA drive + USB adapter, but rather has the USB logic on the motherboard. Mounted inside the case with the on-board USB2.0 port. Used for cold storage/secondary backup.
+- Power supply $0, reused
+
+Total: $327
+
+![Reusing 0.5" aluminum channel to adapt a 2.5" drive to 3.5"](nas1.jpeg)
+_Reusing 0.5" aluminum channel to adapt a 2.5" drive to 3.5"_
+
+![The drive stack](nas2.jpeg)
+_The drive stack_
+
+![It boots!](nas3.jpeg)
+_It boots!_
+
+## Software
+
+Thought about [TrueNAS](https://www.truenas.com/), but potentially overkill.
+
+I might want to have containers running off the fast boot drive, and won’t nearly need all 500GB for the OS.
+
+There is limited/no support for installing TrueNAS to a partition rather than a full disk or within a container.
+
+- [1] TrueNAS forum resource: [I have to waste an entire drive just for booting?](https://forums.truenas.com/t/i-have-to-waste-an-entire-drive-just-for-booting/1501)
+- [2] GitHub Gist: [Install TrueNAS SCALE on a partition instead of the full disk](https://gist.github.com/gangefors/2029e26501601a99c501599f5b100aa6)
+
+No Unraid as it’s payware and I’m uneasy about the boot key method.
+
+What do I really need? ZFS, Samba, containers, basic monitoring interface.
+
+Decided to go with a distro and ecosystem I’m more familiar with, [Fedora Server](https://fedoraproject.org/server/).
+
+## Step-by-step
+
+1. Back up files from the other NAS to various places, ensuring at least 2x copies. Some of these backups had to be gzipped because I’m not exactly rolling in free storage space.
+2. Install the drives, 3x2TB in our case
+3. Poke around in the BIOS to enable useful features like Wake on LAN
+4. Install Fedora Server on NVMe drive from live USB
+5. Configure the network interface and set up a static IP
+6. Enable Wake on LAN in the OS
+    - `ethtool -s enp1s0 wol g`
+    - `nmcli connection modify enp1s0 802-3-ethernet.wake-on-lan magic`
+    - `reboot`
+7. Install OpenZFS ([official docs](https://openzfs.github.io/openzfs-docs/Getting%20Started/Fedora/index.html))
+    - Why ZFS? Snapshot recovery sounds like something you might not think you need until you do.
+    - There’s a lot of fear out there about frequent kernel updates in Fedora causing breaking changes with ZFS. I think this is overblown/could be mitigated by being careful about backing up the boot disk. In my experiences in the JavaScript ecosystem, it’s often sensible to pin a dependency at a particular version, and it’s not a bad idea to do that here with the kernel version.
+    - Step 7 in the guide addresses kernel compatibility:  *By default ZFS may be removed by kernel package updates. To lock the kernel version to only ones supported by ZFS to prevent this:* `echo 'zfs' > /etc/dnf/protected.d/zfs.conf` 
+8. Create a raidz storage pool (per [this guide](https://ruan.dev/blog/2017/08/24/create-a-zfs-raidz1-volume-pool-on-ubuntu-16))
+    - I created a raidz1 pool across sda, sdb, sdc (all 2TB drives), which should yield a capacity slightly less than 4TB and which can tolerate failure of at most 1 drive.
+      - `zpool create storage-pool raidz1 sda sdb sdc -f`
+    - This sounds less safe than a mirrored configuration, but is it really? In addition to the older desktop drives, I’m adding a 2TB drive that was used very infrequently, and my storage workload won’t require running the drives 24/7. I’m not convinced I would be any safer running heavily used secondhand WD Red drives from Ebay, even in raidz2, which was my other temptation.
+    - The drives will still be colocated and there are plenty of things that could take them out all at once, like a power supply issue or a natural disaster. I should probably set up [Backblaze](https://www.backblaze.com/) for offsite backups.
+9. Set up a Samba share ([Fedora docs](https://docs.fedoraproject.org/en-US/quick-docs/samba/))
+    - Not doing any group stuff since I’ll be the only user for now
+10. Put all your files back, profit.
+
+## Conclusion
+
+In a weekend and with just over $300 in hardware, I roughly doubled my available storage space for full-size photo scans, client work, and general backups. Sequential write speeds over SMB, which is the main way I access the device, got roughly 50% faster. I'm sure read speeds are similarly better, but I haven't profiled that yet.
+
+What I lost in ease of use within the Synology ecosystem, I gained in flexibility and upgradability. The new NAS motherboard has good expansion capabilities for SATA and M.2 drives, and leaves just enough space for those future drives because of its small form factor.
+
+4x 2.5GbE ports, which I consider the new standard for my home network, are nice to have. I get 1200Mbps down currently, and think this could increase, but I also think it’s unlikely that I will need 10GbE in the next five years or so. Maybe I could repurpose this box into a firewall at some point.
+
+![The NAS in its new home.](nas4.jpeg)
+_The NAS in its new home._
+
+## Useful resources
+
+- [Michael Lynch’s NAS build](https://mtlynch.io/budget-nas/), he followed a similar path in outgrowing Synology.
+- How do you know if your drive is CMR or SMR? See [this list](https://nascompares.com/answer/list-of-wd-cmr-and-smr-hard-drives-hdd/).
+- [RAIDZ space calculator](https://www.raidz-calculator.com/)
+- Use `rsync` to copy files, run it in the background, disconnect it from the current TTY session and write stdout/stderr to a file:
+    - `nohup rsync -avh /path/to/src/ /path/to/dest/ > rsync.log 2>&1 < /dev/null & disown`
+
+## Future directions
+
+- [friendly_neighbor](https://danielpgross.github.io/friendly_neighbor/howto-sleep-wake-on-demand): Lightweight service that wakes the NAS from a suspended state on *any* network traffic, not just WOL magic packets.
+    - I have another machine that runs 24/7, serving [PiHole](https://pi-hole.net/) (DNS) and [Unifi Network Server](https://ui.com/download/releases/network-server), which could do this too.
+- [Tailscale](https://tailscale.com/) exit node so that the storage becomes accessible from anywhere
+    - Need to figure out if SMB is still the best protocol to use over long distances through the VPN
+- Better 80mm fans and a software-based controller. The motherboard only has 1 additional fan header, and it is unclear whether it even has BIOS settings for variable speed.
+- Add another SSD for caching or [L2ARC](https://www.truenas.com/docs/references/l2arc/)
+- [restic](https://restic.net/) for backups, and [Backrest](https://github.com/garethgeorge/backrest), a restic GUI
+- iCloud Photos Downloader ([github](https://github.com/icloud-photos-downloader/icloud_photos_downloader))
+
+Thanks for checking this out!
