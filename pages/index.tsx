@@ -19,13 +19,10 @@ const Index = ({
   <PageLayout isHome>
     <section className="headingMd" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
       <p>
-        Hi, I'm Sam.
+        Hi, I'm Sam. I am a software engineer and pilot, leading engineering at Flycore, which is a customer relationship management tool for flight schools.
       </p>
       <p>
-        I am a full-stack software engineer and private pilot based in Philly. Prior to working in tech, I studied communications at NYU and held internships in advertising and marketing.
-      </p>
-      <p>
-        I occasionally take on contract work, so reach out if you would be interested in collaborating.
+        I studied communications at NYU and will send you book recommendations.
       </p>
     </section>
     <section>
@@ -53,29 +50,6 @@ const Index = ({
           <a href="https://posthog.com/" target="_blank" rel="noopener noreferrer">PostHog</a> (YC W20).
       </p>
     </section>
-    {/* <section>
-      <Heading.Lg>Projects</Heading.Lg>
-      <ul className="list">
-        {hostedProjects.map(({ uri, title, subtitle, image }, i) => (
-          <li key={uri}>
-            <ConditionalExternalLink href={uri}>
-              <span className="list-link-content">
-                <Heading.Md style={{
-                  display: 'inline-block',
-                  marginRight: '0.5em',
-                  color: 'var(--text)',
-                }}>
-                  {title}
-                </Heading.Md>
-                <span className="list-subtitle" style={{ textDecoration: 'none' }}>
-                  {subtitle}
-                </span>
-              </span>
-            </ConditionalExternalLink>
-          </li>
-        ))}
-      </ul>
-    </section> */}
     <section>
       <Heading.Lg>Writing</Heading.Lg>
       <div className="flex-col">

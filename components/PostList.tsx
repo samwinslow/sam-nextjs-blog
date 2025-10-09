@@ -12,7 +12,7 @@ const PostList = ({ posts }: { posts: PostMetadata[] }) => (
           <span className="list-link-content" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <div style={{ 
               position: 'relative', 
-              width: '6.5rem', 
+              width: '6rem', 
               aspectRatio: '3 / 2',
               flexShrink: 0,
             }}>
@@ -22,7 +22,6 @@ const PostList = ({ posts }: { posts: PostMetadata[] }) => (
                 fill
                 style={{ overflow: 'hidden', background: 'var(--light)', color: 'transparent', objectFit: 'cover' }}
                 placeholder="empty"
-                loading="eager"
               />
             </div>
             <span>

@@ -14,30 +14,31 @@ const headingStyle: React.CSSProperties = {
 const Header = ({ home }: { home?: boolean }) => (
   <header style={{ marginBottom: '2rem' }}>
     { home ? (
-      <Heading.Xl style={headingStyle}>
-        <Image
-          priority
-          src="/img/profile.jpg"
-          height={72}
-          width={72}
-          alt={siteTitle}
-          className="borderCircle"
-        />
-        <Link href="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>
-          {siteTitle}
-        </Link>
-      </Heading.Xl>
+      <>
+        <div style={{borderTop: '1.5rem solid black', paddingTop: '3rem', maxWidth: '12rem' }} role="presentation" />
+        <div style={{
+          position: 'relative',
+          width: '12rem',
+          aspectRatio: '9 / 16',
+          marginBottom: '2rem',
+        }}>
+          <Image
+            priority
+            src="/img/profile-la.jpg"
+            alt={siteTitle}
+            fill
+            style={{ overflow: 'hidden', background: 'var(--light)', color: 'transparent', objectFit: 'cover'}}
+          />
+        </div>
+        <Heading.Xl style={headingStyle}>
+          <Link href="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>
+            {siteTitle}
+          </Link>
+        </Heading.Xl>
+      </>
     ) : (
       <Heading.Lg style={headingStyle}>
-        <Image
-          priority
-          src="/img/profile.jpg"
-          height={48}
-          width={48}
-          alt={siteTitle}
-          className="borderCircle"
-        />
-        <Link href="/" style={{ color: 'var(--text)', textDecoration: 'none' }}>
+        <Link href="/" style={{ }}>
           {siteTitle}
         </Link>
       </Heading.Lg>
