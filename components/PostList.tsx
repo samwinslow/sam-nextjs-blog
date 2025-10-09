@@ -14,6 +14,7 @@ const PostList = ({ posts }: { posts: PostMetadata[] }) => (
               position: 'relative', 
               width: '6.5rem', 
               aspectRatio: '3 / 2',
+              flexShrink: 0,
             }}>
               <Image
                 src={image ? `/img/${image}` : `/img/og_image_bw.png`}

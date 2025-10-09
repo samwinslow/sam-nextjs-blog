@@ -2,7 +2,7 @@ import Link from "next/link"
 import React from "react"
 
 export const SlugItem = ({ href, text }: { href?: string, text: string | React.ReactNode }): JSX.Element => (
-  <code className="slug-item">
+  <span className="slug-item">
     { href ? (
       <Link
         href={href}
@@ -11,5 +11,5 @@ export const SlugItem = ({ href, text }: { href?: string, text: string | React.R
         {text}
       </Link>
     ): <>{text}</>}
-  </code>
+  </span>
 )

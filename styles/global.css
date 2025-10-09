@@ -6,7 +6,8 @@
   --muted: #bbb;
   --tree-nav-background: transparent;
   --light: rgba(0,10,20,0.15);
-  --link: hsl(180, 80%, 32%);
+  /* --link: hsl(180, 80%, 32%); */
+  --link: blue;
   --bg-light: rgba(0,10,20,0.05);
 }
 
@@ -150,8 +151,10 @@ code {
   background: var(--tree-nav-background);
   border: 1px solid var(--light);
   display: inline-block;
-  margin-right: 0.3em;
-  padding: 0 0.3em;
+  margin-right: 0.4em;
+  padding: 0.3em 0.4em;
+  border-radius: 0.2em;
+  line-height: 1;
 }
 
 .tree-nav-box h5 {
