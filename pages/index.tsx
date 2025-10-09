@@ -8,6 +8,28 @@ import { TagsCloud } from './tags'
 import ConditionalExternalLink from '../components/ConditionalExternalLink'
 import PostList from '../components/PostList'
 import { SlugItem } from '../components/SlugItem'
+import { useState } from 'react'
+
+const TelLink = () => {
+  const phone = '+1 ' + (424*2) + ' ' + (206*2) + ' 0' + (341*2)
+  const defaultLinkText = 'Phone'
+  const [linkText, setLinkText] = useState(defaultLinkText)
+  return (
+    <li
+      onMouseOver={() => setLinkText(phone)}
+      onMouseOut={() => setLinkText(defaultLinkText)}
+      onClick={(e) => {
+        e.preventDefault()
+        if (linkText !== defaultLinkText) {
+          window.location.href = `tel:${phone.replace(/\s/g, '')}`
+        }
+      }}
+      style={{ color: 'var(--link)' }}
+    >
+      <SlugItem text={linkText} />
+    </li>
+  )
+}
 
 const Index = ({
   allPostsData,
@@ -19,10 +41,13 @@ const Index = ({
   <PageLayout isHome>
     <section className="headingMd" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
       <p>
-        Hi, I'm Sam. I am a software engineer and pilot, leading engineering at Flycore, which is a customer relationship management tool for flight schools.
+        Hi, I'm Sam. I am the lead software engineer at Flycore, a customer relationship management tool for flight schools.
       </p>
       <p>
-        I studied communications at NYU and will send you book recommendations.
+        I am also a private pilot with an instrument rating, high performance and complex endorsements.
+      </p>
+      <p>
+        I hold a B.S. in Communications from NYU.
       </p>
     </section>
     <section>
@@ -36,6 +61,7 @@ const Index = ({
               </ConditionalExternalLink>
             </li>
           ))}
+          <TelLink />
         </ul>
       </div>
     </section>

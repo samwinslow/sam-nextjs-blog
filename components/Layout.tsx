@@ -15,7 +15,6 @@ const Header = ({ home }: { home?: boolean }) => (
   <header style={{ marginBottom: '2rem' }}>
     { home ? (
       <>
-        <div style={{borderTop: '1.5rem solid black', paddingTop: '3rem', maxWidth: '12rem' }} role="presentation" />
         <div style={{
           position: 'relative',
           width: '12rem',
