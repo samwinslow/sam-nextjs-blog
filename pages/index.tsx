@@ -41,7 +41,7 @@ const Index = ({
   <PageLayout isHome>
     <section className="headingMd" style={{ maxWidth: '36rem', marginBottom: '4rem' }}>
       <p>
-        Hi, I'm Sam. I am the lead software engineer at Flycore, a customer relationship management tool for flight schools.
+        Hi, I'm Sam. I am a freelance software engineer, most recently at Flycore, which is a customer relationship management tool for flight schools.
       </p>
       <p>
         I am also a private pilot with an instrument rating, high performance and complex endorsements.
@@ -66,14 +66,13 @@ const Index = ({
       </div>
     </section>
     <section>
-      <Heading.Lg>Work</Heading.Lg>
+      <Heading.Lg>Work Experience</Heading.Lg>
       <p>
           Software Engineer at{' '}
           <a href="https://getflycore.com/" target="_blank" rel="noopener noreferrer">Flycore</a>,{' '}
-          prev.{' '}
           <a href="https://www.patchbay.xyz/" target="_blank" rel="noopener noreferrer">Patchbay</a>,{' '}
-          <a href="https://www.linkedin.com/company/thesevenapp/" target="_blank" rel="noopener noreferrer">Seven</a>,{' '}
-          <a href="https://posthog.com/" target="_blank" rel="noopener noreferrer">PostHog</a> (YC W20).
+          <a href="https://www.linkedin.com/company/thesevenapp/" target="_blank" rel="noopener noreferrer">Seven</a>, and{' '}
+          <a href="https://posthog.com/" target="_blank" rel="noopener noreferrer">PostHog</a>.
       </p>
     </section>
     <section>
