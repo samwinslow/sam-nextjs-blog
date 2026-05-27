@@ -1,7 +1,6 @@
 import PageLayout from '../../components/Layout'
-import { getPostsByTag } from '../../lib/posts'
+import { getPostsByTag, getSortedPostsData, getTagsFromPosts } from '../../lib/posts'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import tags from '../../lib/tags.json'
 import pluralize from 'pluralize'
 import { PostData } from '../../lib/types'
 import Link from 'next/link'
@@ -45,10 +44,9 @@ const Tag = ({
 export default Tag
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = tags.map(tag => ({
-    params: {
-      id: tag
-    }
+  const posts = getSortedPostsData()
+  const paths = getTagsFromPosts(posts).map(({ id }) => ({
+    params: { id }
   }))
   return {
     paths,

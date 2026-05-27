@@ -19,3 +19,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+EXCLUSIONS:
+
+Files and content in `posts` and `public/img` are not considered Software.
+All rights reserved for written prose and blog articles - content may only
+be reproduced, in whole or in part, with written permission and attribution.
