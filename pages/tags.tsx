@@ -66,7 +66,7 @@ export const TagsCloud = ({ tags }: { tags: TagData[] }) => (
 )
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getSortedPostsData()
+  const posts = getSortedPostsData()
   return {
     props: {
       tags: getTagsFromPosts(posts),

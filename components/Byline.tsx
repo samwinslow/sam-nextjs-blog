@@ -9,7 +9,7 @@ export const Byline = ({
   expanded = false
 }: {
   date: PostMetadata['date'],
-  tags: PostMetadata['tags'],
+  tags?: PostMetadata['tags'],
   linkTags?: boolean
   expanded?: boolean
 }): JSX.Element => (

@@ -9,6 +9,7 @@ export type PostData = {
   parents?: string[]
   children?: string[]
   tags?: string[]
+  archived?: boolean
   source: MdxRemote.Source
   previous: string | null
   next: string | null
