@@ -65,17 +65,21 @@ const Post = ({
     }}>
       <article>
         <Heading.Xl>{title}</Heading.Xl>
-        <Byline date={date} tags={tags} expanded />
+        <Byline date={date} expanded />
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
         <div className="mdx-wrapper">{content}</div>
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
       </article>
       <footer style={{ marginTop: '2em' }}>
-        <div>
-          { previous && <span>Previous post: <SlugItem text={previous} href={`/post/${previous}`} /></span> }
-        </div>
-        <div>
-          { next && <span>Next post: <SlugItem text={next} href={`/post/${next}`} /></span> }
+        { tags?.length > 0 && (
+          <div style={{ marginBottom: '1.5em' }}>
+            <span style={{ fontStyle: 'italic' }}>See all posts tagged: </span>
+            {tags.map((tag, i) => <SlugItem key={i} href={`/tag/${tag}`} text={tag} />)}
+          </div>
+        )}
+        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+          { previous && <SlugItem text={`← Previous: ${previous}`} href={`/post/${previous}`} /> }
+          { next && <SlugItem text={`Next: ${next} →`} href={`/post/${next}`} /> }
         </div>
       </footer>
     </PageLayout>
