@@ -26,6 +26,7 @@ export const getSortedPostsData = () => {
         tags: postMetadata?.tags?.sort() || null,
       }
     })
+    .filter(post => !post.archived)
     .sort((a, b) => a.date < b.date ? 1 : -1)
     .map((current, i, allPosts) => ({
       ...current,
@@ -74,7 +75,7 @@ export const getPostsByTag = async (tag: string): Promise<PostData[]> =>
 export const getTagsFromPosts = (posts: any[]): TagData[] => {
   const tagRecord: Record<string, number> = {}
   posts.forEach(({ tags: postTags }) => {
-    postTags?.forEach(tag => {
+    postTags?.forEach((tag: string) => {
       if (tag in tagRecord) {
         tagRecord[tag] += 1
       } else {
