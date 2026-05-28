@@ -1,14 +1,13 @@
-import Head from 'next/head'
 import PageLayout from '../../components/Layout'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import hydrate from 'next-mdx-remote/hydrate'
 import MDXComponents from '../../components/MDXComponents'
 import { PostData } from '../../lib/types'
 import pluralize from 'pluralize'
 import { SlugItem } from '../../components/SlugItem'
 import { Byline } from '../../components/Byline'
 import { Heading } from '../../components/Heading'
+import { MDXRemote } from 'next-mdx-remote'
 
 const TreeNavigation = ({ postIds, relation }: { postIds: string[], relation: string }) => (
   <div className={`tree-nav ${relation}`}>
@@ -53,7 +52,7 @@ const Post = ({
 }: {
   postData: PostData
 }) => {
-  const content = hydrate(source, { components: MDXComponents })
+  // const content = hydrate(source, { components: MDXComponents })
   const hasRelatedNodes = parents?.length || children?.length
   const imgRel = encodeURIComponent('/img/'+ image)
 
@@ -67,7 +66,9 @@ const Post = ({
         <Heading.Xl>{title}</Heading.Xl>
         <Byline date={date} expanded />
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
-        <div className="mdx-wrapper">{content}</div>
+        <div className="mdx-wrapper">
+          <MDXRemote {...source} components={{}} />
+        </div>
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
       </article>
       <footer style={{ marginTop: '2em' }}>

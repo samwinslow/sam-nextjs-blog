@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
-import MDXComponents from '../components/MDXComponents'
 import { PostData, PostMetadata, TagData } from './types'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
