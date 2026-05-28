@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
 import MDXComponents from '../components/MDXComponents'
 import { PostData, PostMetadata, TagData } from './types'
 
@@ -54,8 +54,8 @@ export const getPostData = async (id: string): Promise<PostData> => {
   const fullPath = path.join(postsDirectory, `${id}.mdx`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
-  const source = await renderToString(content, {
-    components: MDXComponents
+  const source = await serialize(content, {
+    // components: MDXComponents
   })
   const postWithPointers = sortedPosts.find(({ id: postId }) => postId === id)
 
