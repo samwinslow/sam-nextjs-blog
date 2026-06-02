@@ -1,4 +1,4 @@
-import type { MdxRemote } from 'next-mdx-remote/types'
+import { MDXRemoteSerializeResult } from "next-mdx-remote"
 
 export type PostData = {
   id: string
@@ -10,7 +10,7 @@ export type PostData = {
   children?: string[]
   tags?: string[]
   archived?: boolean
-  source: MdxRemote.Source
+  source: MDXRemoteSerializeResult
   previous: string | null
   next: string | null
 }
