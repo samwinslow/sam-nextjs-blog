@@ -67,7 +67,7 @@ const Post = ({
         <Byline date={date} expanded />
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
         <div className="mdx-wrapper">
-          <MDXRemote {...source} components={{}} />
+          <MDXRemote {...source} components={MDXComponents} />
         </div>
         { hasRelatedNodes && <RelatedNodes parents={parents} children={children} /> }
       </article>
